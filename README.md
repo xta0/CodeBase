@@ -1,2 +1,3 @@
-# CodeBase
-Try different languages and ideas
+# Code Playground
+
+Try different languages and ideas with different languages
