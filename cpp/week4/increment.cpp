@@ -1,18 +1,15 @@
 #include <iostream>
 
-
 class CDemo
 {
-public:
+  public:
 	CDemo(){
 
 	};
 
 	~CDemo(){
 
-		
 	};
-	
 };
 
 int main(int argc, char const *argv[])

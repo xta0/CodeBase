@@ -3,28 +3,25 @@
 
 class CStudent
 {
-public:
-	CStudent(int _age, char* _name):age(_age),name(_name)
-	{
+  public:
+	CStudent(int _age, char *_name) : age(_age), name(_name){
 
-	};
+												 };
 	int age;
-	char* name;
-
+	char *name;
 };
 
-std::ostream& operator<<(std::ostream& o, const CStudent &s)
+std::ostream &operator<<(std::ostream &o, const CStudent &s)
 {
-		o<<s.name;
-		return o;
+	o << s.name;
+	return o;
 }
-
 
 int main(int argc, char const *argv[])
 {
 	/* code */
-	CStudent s(10,"jayson");
+	CStudent s(10, "jayson");
 	// s.age = 10;
-	std::cout<<s;
+	std::cout << s;
 	return 0;
 }

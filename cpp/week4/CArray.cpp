@@ -6,17 +6,21 @@
 using namespace std;
 class CIntArray
 {
-	private:
-		int* ptr;
-		int size;
-		int cursor;
+  private:
+	int *ptr;
+	int size;
+	int cursor;
 
-public:
-	CIntArray():ptr(NULL){ size = 0; cursor = 0; };
-
-	CIntArray(int sz):size(sz)
+  public:
+	CIntArray() : ptr(NULL)
 	{
-		if(sz == 0)
+		size = 0;
+		cursor = 0;
+	};
+
+	CIntArray(int sz) : size(sz)
+	{
+		if (sz == 0)
 		{
 			cursor = 0;
 			ptr = NULL;
@@ -25,33 +29,84 @@ public:
 		{
 			cursor = 0;
 			ptr = new int(sz);
-			memset(ptr,0,sz*sizeof(int));
+			memset(ptr, 0, sz * sizeof(int));
 		}
 	}
 
-	CIntArray(CIntArray& list)
+	CIntArray(CIntArray &list)
 	{
 		if (!list.ptr)
 		{
 			ptr = NULL;
 			size = 0;
-			return ;
+			return;
 		}
 		else
 		{
 			if (ptr)
-			{	
+			{
 				delete[] ptr;
 				ptr = NULL;
 			}
 
 			size = list.size;
 			ptr = new int(list.size);
-			memcpy(ptr,list.ptr,list.size*sizeof(int));
+			memcpy(ptr, list.ptr, list.size * sizeof(int));
 		}
 	}
 
-	~CIntArray(){
+	~CIntArray()
+	{
+
+		if (ptr)
+		{
+			delete[] ptr;
+			ptr = NULL;
+		}
+	}
+
+	//push会改变size
+	void push(int x)
+	{
+		if (ptr == NULL)
+		{
+			ptr = new int(1);
+			ptr[0] = x;
+		}
+		else
+		{
+			int *new_ptr = new int[size + 1];
+			memcpy(new_ptr, ptr, size * sizeof(int));
+			delete[] ptr;
+			ptr = new_ptr;
+			ptr[cursor] = x;
+			cursor++;
+		}
+	}
+
+	void pop()
+	{
+		cursor--;
+	}
+
+	int length() { return this->size; }
+
+	CIntArray &operator=(const CIntArray &list)
+	{
+		if (ptr == list.ptr)
+		{
+			return *this;
+		}
+
+		if (list.ptr == NULL)
+		{
+			if (ptr)
+			{
+				delete[] ptr;
+				ptr = NULL;
+				size = 0;
+			}
+		}
 
 		if (ptr)
 		{
@@ -59,92 +114,37 @@ public:
 			ptr = NULL;
 		}
 
-	}
-
-//push会改变size
-	void push(int x)
-	{
-		if (ptr == NULL)
+		if (size < list.size)
 		{
-				ptr = new int(1);
-				ptr[0] = x;
-		}
-		else
-		{
-				int* new_ptr = new int[size + 1];
-				memcpy(new_ptr,ptr,size*sizeof(int));
-				delete []ptr;
-				ptr = new_ptr;
-				ptr[cursor] = x;
-				cursor ++;
-		}
-	}
-
-	void pop()
-	{
-		cursor --;
-
-	}
-
-	int length(){return this->size;}
-
-	CIntArray& operator=(const CIntArray& list)
-	{
-		if (ptr == list.ptr)
-		{
-				return *this;
-		}
-
-		if (list.ptr == NULL)
-		{
-				if (ptr)
-				{
-					delete[] ptr;
-					ptr = NULL;
-					size = 0;
-				}
-		}
-		
 			if (ptr)
-			{	
-				delete[] ptr;
-				ptr = NULL;
-			}
-
-			if (size<list.size)
 			{
-				if (ptr)
-				{
-					delete[] ptr;
-					ptr = new int[list.size];
-				}
+				delete[] ptr;
+				ptr = new int[list.size];
 			}
-			size = list.size;
-			memcpy(ptr,list.ptr,list.size*sizeof(int));
+		}
+		size = list.size;
+		memcpy(ptr, list.ptr, list.size * sizeof(int));
 
-			return *this;
+		return *this;
 	}
 
-	int& operator[](int x)
+	int &operator[](int x)
 	{
 		return ptr[x];
 	}
-
 };
 
-
-void logArray(CIntArray& b)
+void logArray(CIntArray &b)
 {
 	cout << "------" << endl;
-	
+
 	for (int i = 0; i < b.length(); ++i)
 	{
-			printf("b[%d]:%d\n",i,b[i]);
+		printf("b[%d]:%d\n", i, b[i]);
 	}
-
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 
 	CIntArray a;
@@ -156,12 +156,9 @@ int main(int argc, char* argv[])
 	b.push(4);
 	logArray(b);
 
-
 	// a = b;
 	// printf("a[0]:%d\n",a[0]);
 	// printf("a[1]:%d\n",a[1]);
 
-
 	return 0;
 }
-
