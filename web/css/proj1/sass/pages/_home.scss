@@ -1,0 +1,27 @@
+.section-about{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh;
+
+
+    &__row {
+        max-width: $grid-width;
+        margin: 0 auto;
+        // text-align: center;
+    
+        &:not(:last-child) {
+            margin-bottom: $gutter-vertical;
+        }
+    
+        @include clearfix;
+    }
+
+    &__col{
+        float: left;
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+        }
+        width: calc((100% - #{$gutter-horizontal})/2 );
+    }
+
+}
