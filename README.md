@@ -1,3 +1,3 @@
 # Code Playground
 
-Try different languages and ideas with different languages
+Try different ideas with different languages
