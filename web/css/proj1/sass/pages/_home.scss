@@ -2,26 +2,22 @@
     background-color: $color-grey-light-1;
     padding: 25rem 0;
     margin-top: -20vh;
+}
 
+.section-features{
+    margin-top: -10rem;
+    padding: 20rem 0;
+    background-image: linear-gradient(to right bottom, rgba($color_primary-light, 0.8), rgba($color_primary-dark, 0.8)), url(../img/nat-4.jpg);
+    background-size: cover;
+    transform: skewY(-7deg);
+    //select the direct children
+    & > * {
+        transform: skewY(7deg);
+    }
+}
 
-    // &__row {
-    //     max-width: $grid-width;
-    //     margin: 0 auto;
-    //     // text-align: center;
-    
-    //     &:not(:last-child) {
-    //         margin-bottom: $gutter-vertical;
-    //     }
-    
-    //     @include clearfix;
-    // }
-
-    // &__col{
-    //     float: left;
-    //     &:not(:last-child) {
-    //         margin-right: $gutter-horizontal;
-    //     }
-    //     width: calc((100% - #{$gutter-horizontal})/2 );
-    // }
-
+.section-tours{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -10rem;
 }
