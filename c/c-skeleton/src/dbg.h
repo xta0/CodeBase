@@ -40,4 +40,5 @@
         errno = 0;               \
         goto error;              \
     }
+
 #endif
