@@ -1,6 +1,6 @@
 #include "main.h" 
-#include "module1.h"
-#include "module2.h"
+#include "lib/module1.h"
+#include "ext/module2.h"
 
 int main(void){
 
