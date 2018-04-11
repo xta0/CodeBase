@@ -1,30 +1,30 @@
 // Playground - noun: a place where people can play
 
-import UIKit
+/**Create**/
 
-//dicionarys
-
-
-//Inferred
+//1. An empty dictionary
+var game = [String: Int]()
+let gameTypesExplicity3 = Dictionary<String,String>()
+//2.Inferred
 let gameTypes = ["COD":"Shooting","COL":"RPG"]
-
-//explicity (long)
+//3. Explicity (long)
 let gameTypesExplicit1:Dictionary<String,String> = ["COD":"Shooting","COL":"RPG"]
-
-//explicity (short)
+//4. explicity (short)
 let gameTypesExplicit2:[String:String] = ["COD":"Shooting","COL":"RPG"]
 
-//empty
-let gameTypesExplicity3 = Dictionary<String,String>()
+/**set values**/
+game["COD"]=123;
+game["HeartStone"]=230;
 
-//Accessing
+/**Accessing**/
 let optionalGameType = gameTypes["COD"]
 
-if let definiteGameType = optionalGameType
-{
-    println(definiteGameType)
+if let definiteGameType = optionalGameType{
+    print(definiteGameType)
 }
 
+/*loop*/
+//1, loop keys
 
 //Immutable vs. mutable
 

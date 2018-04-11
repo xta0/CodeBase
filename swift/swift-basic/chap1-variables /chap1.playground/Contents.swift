@@ -31,24 +31,19 @@ var myStringOptional:String?
 myStringOptional="abc"
 //myStringOptional = nil; //option type can be assigned to nil
 
-if(myStringOptional != nil)
-{
+if(myStringOptional != nil){
     let myAnotherString = myStringOptional! //force unwrap the value
     //println(myAnotherString) swift2.0
     //swift 3.0
     print(myAnotherString)
-}
-else
-{
+}else{
     print("myAnotherString is nil")
 }
 
 
-if let myAnotherString = myStringOptional
-{
+if let myAnotherString = myStringOptional{
     print(myAnotherString)
 }
-else
-{
+else{
     print("myAnotherString is nil")
 }
