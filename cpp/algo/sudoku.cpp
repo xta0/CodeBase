@@ -38,8 +38,9 @@ void clear_state(int r, int c,  int num){
     block[block_index(r,c)][num] = 0;
 }
 bool can_be_placed(int r, int c, int num){
-    if( row[r][num] == 0 && 
-        col[c][num] == 0){
+    if( !row[r][num] && 
+        !col[c][num] &&
+        !block[block_index(r,c)][num]){
         return true;
     }
     return false;
@@ -70,19 +71,19 @@ bool DFS(int index){
     return false;
 }
 
-
-
 int main(){
 
     init();
     for(int i=0;i <9;i++){
         for(int j=0;j<9;j++){
-            int x = -1;
-            cin >> x;
-            if(x == 0){
+            char c;
+            cin >> c;
+            board[i][j] = c-'0';
+            if(board[i][j]){
+                set_state(i,j,board[i][j]);
+            }else{ 
                 blanks.push_back({i,j});
             }
-            board[i][j] = x;
         }
     }
     DFS(blanks.size()-1);
