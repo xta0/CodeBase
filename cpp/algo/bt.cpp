@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <stack>
+
 using namespace std;
 
 class TreeNode{
@@ -18,6 +20,24 @@ void traverse_recursive(TreeNode* root){
         cout<<root->val;
     }
 }
+void inOrder_Traverse(TreeNode* root){
+    stack<TreeNode* >st;
+    TreeNode* pointer = root;
+    while(root){
+        st.push(root);
+        if(root->left){
+            root = root->left;
+        }else{
+            TreeNode* top = st.top();
+            st.pop();
+            
+        }
+        if(root->right){
+            cout<<root-> 
+        }
+    }
+}
+
 
 int main(){
 
@@ -36,8 +56,11 @@ int main(){
     
     TreeNode* node = new TreeNode("A");
     node->left = new TreeNode("B");
+    node->right = new TreeNode("C");
     node->left->left = new TreeNode("C");
-    traverse_recursive(node);
+    node->left->right = new TreeNode("D");
+    // traverse_recursive(node);
+    inOrder_Traverse(node);
 
 
     return 0;
