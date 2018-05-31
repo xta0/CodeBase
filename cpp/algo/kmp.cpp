@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
-int KMPStrMatching(string T, string P, int *N, int start){
+int kmp(string T, string P, vector<int> N, int start){
     int tLen = T.length();
     int pLen = P.length();
     if(tLen - start < pLen){
@@ -11,8 +12,11 @@ int KMPStrMatching(string T, string P, int *N, int start){
     }
     int i=start;
     int j=0;
+    static int x = 0;
     while(i<tLen && j<pLen){
-        if(T[i] == P[j] || N[j] == -1){
+        
+        if(T[i] == P[j] || j == -1){
+            cout<<++x<<endl;
             i++, j++;
         }else{
             j = N[j];
@@ -24,32 +28,12 @@ int KMPStrMatching(string T, string P, int *N, int start){
         return -1;
     }
 }
-int f(char s[])
-{
-    int i = 0, j = 0;
-    while(s[j]){
-         j++;
-    }
-    for (j--; i < j && s[i] == s[j]; i++, j--){};
-    return i>=j;
-}
-int check(const char s[],int len){
-    char tmp[len];
-    for(int i=0;i<len;++i){
-        if(s[i] == 'G' || s[i] == 'C'){
-            tmp[i]=s[i] == 'G' ? 'C':'G';
-        }else {
-            tmp[i]=s[i]=='A'?'T':'A';
-        }
-    }
-    char* x = strcat(tmp,s);
-    return f(x);
-}
+
 int main(){
-    const char *ss = "GTACGTAC";
-    cout<<check(ss,8)<<endl;
 
-
-
+    string P = "aabcaabbaa";
+    string T = "aaabaabcabaabcaabbaab";
+    vector<int> N = {-1,0,0,-1,1,0,2,0,0};
+    cout<<kmp(T,P,N,0)<<endl;
     return 0;
 }
