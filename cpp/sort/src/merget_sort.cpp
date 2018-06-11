@@ -1,10 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "dbg.h"
+#include "cpp.h"
 
 using namespace std;
-
-#define logv(v) for(auto x:v){cout<<x<<" "; } cout<<endl; 
 
 void mergeSort(vector<int>& v){
 
