@@ -7,8 +7,6 @@
 #include <algorithm>
 using namespace std;
 
-
-
 struct HuffmanTreeNode{
     HuffmanTreeNode* left = NULL;
     HuffmanTreeNode* right = NULL;
@@ -50,27 +48,41 @@ HuffmanTreeNode* buildHuffmanTree(vector<int>& weight){
     return root;
 }
 
-void traverse(HuffmanTreeNode* root, vector<int>& codes){
+typedef multimap<int, vector<int> > mmid;
+void traverse(HuffmanTreeNode* root, vector<int>& codes, mmid& dictionary){
     
     if(root&&root->left==NULL&&root->right==NULL){
-        cout<<root->weight<<": ";
-        for(auto n:codes){
-            cout<<n;
-        }
-        cout<<endl;
+       cout<<root->weight<<": "<<codes.size()<<endl;;
+    //    cout<<codes<<endl;//
+            // dictionary[root->weight] = codes;
+        dictionary.insert(mmid::value_type(root->weight, codes));
     }
     
     if(root->left){
-        codes.push_back(0);
-        traverse(root->left,codes);
-        codes.pop_back();
+        codes.push_back('0');
+        traverse(root->left,codes,dictionary);
+        codes.pop_back(); //回溯
     }
-   
+    
     if(root->right){
-        codes.push_back(1);
-        traverse(root->right, codes);
-        codes.pop_back();
+        codes.push_back('1');
+        traverse(root->right, codes,dictionary);
+        codes.pop_back();//回溯
     }
+}
+
+void total_weight(HuffmanTreeNode* root, int total){
+    if(root == NULL){
+        return;
+    }
+    cout<<root->weight<<endl;
+    if(root->left){
+        total_weight(root->left,total);
+    }
+    if(root->right){
+        total_weight(root->right,total);
+    }
+
 };
 
 int main(){
@@ -85,7 +97,17 @@ int main(){
     
     HuffmanTreeNode* root = buildHuffmanTree(vec);
     vector<int> codes;
-    traverse(root, codes);
+    mmid dict;
+    traverse(root, codes,dict);
+    int sum = 0;
+    mmid::iterator it = dict.begin();
+    for(;it != dict.end(); ++it){
+        mmid::value_type pair = *it;
+        int k = pair.first;
+        vector<int> code =pair.second;
+        sum += k*code.size();
+    }
+    cout<<sum<<endl;
     
     return 0;
 }

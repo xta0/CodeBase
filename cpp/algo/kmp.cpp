@@ -4,6 +4,12 @@
 
 using namespace std;
 
+vector<int> buildNext(string s){
+
+
+    return {};
+}
+
 int kmp(string T, string P, vector<int> N, int start){
     int tLen = T.length();
     int pLen = P.length();
@@ -14,10 +20,8 @@ int kmp(string T, string P, vector<int> N, int start){
     int j=0;
     static int x = 0;
     while(i<tLen && j<pLen){
-        
-        if(T[i] == P[j] || j == -1){
-            cout<<++x<<endl;
-            i++, j++;
+        if(T[i] == P[j] || j == -1){            
+            i++; j++;
         }else{
             j = N[j];
         }
