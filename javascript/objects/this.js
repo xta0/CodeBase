@@ -1,4 +1,5 @@
 
+"use strict"
 /** Global context **/
 console.log(this); //points to the global object. window
 

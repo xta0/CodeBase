@@ -34,6 +34,6 @@ function classRoom(){
     }
 }
 
-course1 = classRoom();
+var course1 = classRoom();
 course1.getInstructors(); //['Colt', 'Elie']
 course1.addInstructor("Ian") //[ 'Colt', 'Elie', 'Ian' ]

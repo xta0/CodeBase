@@ -14,7 +14,7 @@ var object1 = (function(){
     console.log("Example 3: Object interface")
     
     // Keep this variable private inside this closure scope
-    var myGrades = [93, 95, 88, 0, 55, 91];
+    // var myGrades = [93, 95, 88, 0, 55, 91];
     
     // Expose these functions via an interface while hiding
     // the implementation of the module within the function() block
@@ -55,7 +55,7 @@ console.log("Example 4: Revealing module pattern")
 console.log(object2.average())
 
 //5 
-var myModule = require('./my_module');
+var myModule = require('./module1');
 var myModuleInstance = new myModule();
 console.log(myModuleInstance.hello()); // 'hello!'
 console.log(myModuleInstance.goodbye()); // 'goodbye!'

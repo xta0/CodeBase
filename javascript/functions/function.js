@@ -1,6 +1,8 @@
 function isEven(num) {
     return num % 2 === 0;
 }
+isEven(3);
+
 function factorial(num) {
 
     if (num < 0) {
@@ -14,3 +16,4 @@ function factorial(num) {
         return num * factorial(num - 1);
     }
 }
+factorial(19);

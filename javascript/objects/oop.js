@@ -1,5 +1,4 @@
 /* constructor */
-
 function House(bedrooms, bathrooms, numSqrt){
     this.bedrooms = bedrooms;
     this.bathrooms = bathrooms;
@@ -20,8 +19,8 @@ function Car(make, model, year){
 
 function MotoCycle(make, model, year){
     //using call
-    //Car.call(this, make, model, year)
-    // Car.apply(this, [make,model,year]);
+    Car.call(this, make, model, year)
+    Car.apply(this, [make,model,year]);
     Car.apply(this,arguments)
     this.numWheels = 2;
 }
