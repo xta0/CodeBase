@@ -1,43 +1,42 @@
-#include <stdio.h>
-#include "header.h"
+#include <iostream>
+#include <vector>
+#include "cpp.h"
 
-void sort(int *input, int l, int r)
-{
-    if(l >= r)
-        return;
-    
-    int pivot = input[l];
-    int i=l;
-    int j=r;
-    while(i!=j){
-        while(input[j]>=pivot && j>i){
-            j--;
+using namespace std;
+
+void quickSort(vector<int>& arr, int left, int right){
+    if(left >= right){
+        return ;
+    }
+    //选择轴值为最左边数
+    int pivot = arr[left];
+    int l=left,r=right;
+    while(l != r){
+        //skip掉右边界大于pivot的值
+        while(arr[r] >= pivot && r>l){
+            r--;
         }
-        while(input[i]<=pivot && j>i){
-            i++;
+        //skip掉左边界小于pivot的值
+        while(arr[l]<=pivot && r>l){
+            l++;
         }
-        if(j>i){
-            //swap
-            int tmp = input[i];
-            input[i] = input[j];
-            input[j] = tmp;
+        //如果走到这里，说明有逆序对交换
+        if(r > l){
+            swap(arr[r],arr[l]);
         }
     }
-
-    //swap pivot
-    input[l] = input[i];
-    input[i] = pivot;
-    
-    //recursion
-    sort(input,l,i-1);
-    sort(input,i+1,r);
+    //归位轴值
+    swap(arr[left],arr[l]);
+    //两段分治
+    quickSort(arr,left,l-1);
+    quickSort(arr,l+1, right);
 }
 
 int main()
 {
-    int a[9] = {4, 6, 5, 2, 9, 3, 1, 7, 8};
-    print_array("before sort", a, 9);
-    sort(a,0,8);
-    print_array("after sort", a, 9);
+    vector<int> arr = {4,2,7,3,7,2,9,1,0,8};
+    quickSort(arr,0,arr.size()-1);
+    logv(arr);
+
     return 0;
 }

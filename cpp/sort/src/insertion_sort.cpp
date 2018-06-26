@@ -17,7 +17,8 @@ void insertSort(vector<int>& v){
                 break;
             }            
         }
-        v[j+1] = e;        
+        v[j+1] = e;  
+        logv(v);      
     }
 }
 
@@ -35,7 +36,7 @@ void insertSort2(vector<int>& v){
 }
 
 int main(){
-    vector<int> v {3,5,4,4,3,2,2,1,0};
+    vector<int> v {46,74,16,53,14,26,40,38,86,65,27,34};
     insertSort(v);
     logv(v);
     return 0;

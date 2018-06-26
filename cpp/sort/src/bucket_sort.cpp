@@ -1,37 +1,24 @@
-#include <stdio.h>
+#include "cpp.h"
+#include <iostream>
+#include <vector>
+using namespace std;
 
-void bucketSort(int *in, int len, int count)
-{
-	int temp = 0;
-	for (int i = 0; i < count; i++)
-	{
-		scanf("%d", &temp);
-		in[temp]++;
-	}
-
-	for (int i = 0; i < len; ++i)
-	{
-		int numbers = in[i];
-		for (int j = 0; j < numbers; j++)
-		{
-			printf("%d,", i);
-		}
-	}
+void bucketSort(vector<int>& v){
+    vector<int> bucket(v.size(),0);
+    for(auto x:v){
+        bucket[x] ++;        
+    }
+    int index = 0;
+    for(int i=0;i<bucket.size();i++){
+        for(int j=0; j<bucket[i];j++){
+            v[index++] = i; 
+        }
+    }
 }
-
-void empty(int *src, int count)
-{
-	for (int i = 0; i < 11; i++)
-	{
-		src[i] = 0;
-	}
-}
-
 int main(int argc, char **argv)
 {
-	int a[11];
-	empty(a, 11);
-	bucketSort(a, 11, 6);
-
-	return 0;
+    vector<int> v {3,5,4,4,3,2,2,1,0};
+    bucketSort(v);
+    logv(v);
+    return 0;
 }
