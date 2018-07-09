@@ -9,4 +9,4 @@ function myModule() {
   }
 }
 
-module.exports = myModule;
+module.exports = myModule.hello;

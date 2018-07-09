@@ -1,3 +1,5 @@
 var obj = require("./module1")
-obj.hello();
+var func = obj.hello();
+func();
+
 obj.goodbye();
