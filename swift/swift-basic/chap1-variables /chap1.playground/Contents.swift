@@ -10,6 +10,7 @@ var myString:String = "Jayson"
 //swift 3.0
 var myView:UIView = UIView(frame: CGRect(x:0,y:0, width:320, height: 100))
 myView.backgroundColor = UIColor(red: 0x11, green: 0x22, blue: 0x33,alpha: 1.0)
+myView.backgroundColor = UIColor.red;
 
 var urInt = 1
 var urDouble = 1.4
