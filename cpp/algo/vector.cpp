@@ -10,14 +10,18 @@ private:
     unique_ptr<int[]> array = nullptr;
     size_t length = 0;
     size_t capacity=0;
-    void reallocation(){
-        int *p = new int[capacity*2]();
-        //copy
-        copy(array.get(), array.get()+capacity, p);
-        array.release();
-        array.reset(p);
-        capacity*=2;
-        
+    bool reallocation(){
+        int *p = new(nothrow) int[capacity*2]();
+        if(!p){
+            return false;
+        }else{
+            //copy
+            copy(array.get(), array.get()+capacity, p);
+            array.release();
+            array.reset(p);
+            capacity*=2;
+            return true;
+        }
     }
 public:
     DynamicArray(int _size):length(_size),capacity(_size*2){
