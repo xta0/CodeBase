@@ -23,28 +23,44 @@ mutableDouble = 2.0
 let constantDouble = 2.0
 //constantDouble = 3.0 //error
 
+/*
+ Initialization
+ 1. Every variable must have a initial value
+ 2. If not sure the initial value, make it optional
+ 3. nil is a type, variable with type can not be initialized as nil value
+ */
 var myStringNonOptional:String
 // print(myStringNonOptional) //error:used before being initialized
 // myStringNonOptional = nil //error, myStringNonOptional is typeof string, can not be assigned to nil
 
-//optional variables
-var myStringOptional:String?
-myStringOptional="abc"
-//myStringOptional = nil; //option type can be assigned to nil
 
-if(myStringOptional != nil){
-    let myAnotherString = myStringOptional! //force unwrap the value
-    //println(myAnotherString) swift2.0
-    //swift 3.0
-    print(myAnotherString)
-}else{
-    print("myAnotherString is nil")
+/*
+Optionals
+*/
+var optionalStr1:String? //equal to optionalStr1 = nil in objc
+var optionalStr2:String! = nil //you need to make sure the string is not nil when use
+print(optionalStr1); //none
+print(optionalStr2); //nil
+
+optionalStr1 = "optinal string 1"
+optionalStr2 = "optinal string 2"
+
+if(optionalStr1 != nil){
+    //println(optionalStr1) swift2.0
+    print(optionalStr1); //swift 3.0
 }
 
+//using unwrap: !
+print(optionalStr1!);
+//because optionalStr2 is declared as !
+//so we don't need to unwarp the value
+print(optionalStr2);
 
-if let myAnotherString = myStringOptional{
-    print(myAnotherString)
+//using optional binding
+if let optionalStr1 = optionalStr1{
+    print(optionalStr1)
 }
-else{
-    print("myAnotherString is nil")
-}
+
+//tenery operators
+var hungury = true
+hungury ? print("Let's eat!") : print("Let's wait.")

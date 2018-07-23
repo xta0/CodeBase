@@ -6,8 +6,7 @@ import UIKit
 
 //ARC
 //retain cycle:
-class A
-{
+class A{
     // unowned var delegate1 :B? //unretain-unsafe
     weak var    delegate2 :B? //weak
     var         delegate3 :B? //strong
