@@ -2,6 +2,10 @@
 
 To start this project
 
-1. run `npm install --save-dev`
-2. run `live-server`
-3. run `npm run compile:sass`
+```
+npm isntall -g live-server
+cd proj/
+live-server
+npm install --save-dev
+npm run compile:sass
+```
