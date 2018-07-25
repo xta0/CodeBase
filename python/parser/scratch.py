@@ -15,4 +15,13 @@ l = re.compile(r"[a-zA-Z]+").split(str1);
 print(l)
 
 #find all
-print(re.findall(r"[0-9]+","1+23=3"))
+
+#match function
+reg1 = r'[a-z]+\( *[0-9]+ *\)'
+str1 = "cos(1)"
+print(re.findall(reg1,str1))
+
+#match "I say, \"hello\""
+reg2 = r'(?:[^\\]|(?:\\.))*'
+str2 = "I say, \"hello\""
+print(re.findall(reg2, str2))
