@@ -1,9 +1,7 @@
-/* @import 是原生css功能 */
-
-@import "normalize.css";/* 来自node_modules */
+@import "normalize.css";
 @import "base/_global";
 @import "base/_variables";
+@import "base/_mixins";
 @import "modules/_large-hero";
 @import "modules/_btn";
-
-
+@import "modules/_wrapper"
