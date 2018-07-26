@@ -8,5 +8,8 @@
 @import "modules/_page-section";
 @import "modules/_headline";
 @import "modules/_row.css";
-@import "modules/generic-content-container.css"
+@import "modules/generic-content-container.css";
+@import "modules/_section-title.css";
+@import "modules/feature-item.css";
+@import "modules/_testimonial.css";
 

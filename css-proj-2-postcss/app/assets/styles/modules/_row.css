@@ -1,14 +1,20 @@
 .row{
-    background: yellow;
     @mixin clearfix;
 
     &--gutters{
         margin-right: -65px;
     }
-    /* 。row下的所有div */
+    &--gutters-large{
+        margin-right: -100px;    
+    }
+    /* 。row下的所有direct child div */
     &--gutters > div{
         padding-right: 65px;
     }
+    &--gutters-large > div{
+        padding-right: 100px;
+    }
+
     @mixin atMedium{
         &__medium-4{
             float: left;
@@ -16,6 +22,10 @@
         }
         &__medium-4--larger{
             width: 37%;
+        }
+        &__medium-6{
+            float: left;
+            width: 50%;
         }
         &__medium-8{
             float: left;
@@ -25,6 +35,20 @@
             width: 63%;
         }
     }
+    &--t-padding{
+        padding-top: 80px;
+    }
 
+    /* begin equal height */
+    &--equal-height-at-medium{
+        @mixin atMedium{
+            display: flex;
+            
+        }
+        & > div{
+            float: none;
+            display: flex;
+        }
+    }
 
 }

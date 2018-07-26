@@ -454,8 +454,6 @@ a{
   }
 
 .wrapper{
-    background-color: green;
-    overflow: hidden;
     padding-left: 18px;
     padding-right: 18px;
     max-width: 1236px;
@@ -492,6 +490,11 @@ a{
 .page-section--blue{
         background-color: #2f5572;
         color: #fff;
+    }
+
+.page-section--testimonials{
+        background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+        background-size: cover;
     }
 
 .headline{
@@ -551,12 +554,6 @@ a{
         margin-top: 0;
     }
 
-.row{
-    background: yellow;
-
-
-}
-
 .row::after{
         content: "";
         clear: both;
@@ -567,10 +564,18 @@ a{
         margin-right: -65px;
     }
 
-/* 。row下的所有div */
+.row--gutters-large{
+        margin-right: -100px;    
+    }
+
+/* 。row下的所有direct child div */
 
 .row--gutters > div{
         padding-right: 65px;
+    }
+
+.row--gutters-large > div{
+        padding-right: 100px;
     }
 
 @media (min-width: 800px) {
@@ -581,6 +586,10 @@ a{
         .row__medium-4--larger{
             width: 37%;
         }
+        .row__medium-6{
+            float: left;
+            width: 50%;
+        }
         .row__medium-8{
             float: left;
             width: 66.66%;
@@ -590,14 +599,111 @@ a{
         }
   }
 
+.row--t-padding{
+        padding-top: 80px;
+    }
+
+/* begin equal height */
+
+@media (min-width: 800px) {
+
+.row--equal-height-at-medium{
+            display: flex
+    }
+  }
+
+.row--equal-height-at-medium > div{
+            float: none;
+            display: flex;
+        }
+
 .generic-content-container p{
+        font-weight: 300;
         line-height: 1.65;
         font-size: 1.125rem;
-        margin:1.8rem 0;
+        margin:0 0 1.8rem 0;
 
     }
 
 .generic-content-container p a{
         font-weight: 700;
+    }
+
+.section-title{
+    font-size: 2.55rem; 
+    font-weight: 300;
+    text-align: center;
+}
+
+@media (min-width: 530px) {
+
+.section-title{
+        font-size: 3.75rem
+}
+  }
+
+.section-title strong {
+        font-weight:500;
+    }
+
+.section-title__icon{
+        position: relative;
+        top: 8px;
+        margin-right: .5rem;
+
+    }
+
+.section-title--blue{
+        color: #2f5572;
+    }
+
+.feature-item{
+    position: relative;
+    padding-left: 94px;
+    padding-bottom: 3.7rem;
+}
+
+.feature-item__icon{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+.feature-item__title{
+        font-weight: 300;
+        font-size: 1.875rem;
+        margin-bottom: .8rem;
+    }
+
+.testimonial{
+    background-color: rgba(255,255,255,.7);
+    padding: 0 1.8255rem 1px 1.8125rem;
+}
+
+.testimonial__photo{
+        position: relative;
+        top: -80px;
+        border-radius: 80px;
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 0 auto -80px auto;
+        border: 6px solid rgba(255,255,255,.7);
+    }
+
+.testimonial__title{
+        margin: 0;
+        color: #2f5572;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+
+.testimonial__subtitle{
+        color: #d59541;
+        text-align: center;
+        font-weight: 400;
+        font-size: 0.937rem;
+        margin: .25rem 0 1rem 0;
     }
 
