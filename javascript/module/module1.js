@@ -1,5 +1,5 @@
 
-function myModule() {
+function Module1() {
   this.hello = function () {
     return 'hello!';
   }
@@ -9,4 +9,5 @@ function myModule() {
   }
 }
 
-module.exports = myModule.hello;
+//exports的是一个object对象
+module.exports = Module1;
