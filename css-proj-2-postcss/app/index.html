@@ -13,22 +13,29 @@
 </head>
 
 <body>
-  <header>
-    <img src="assets/images/icons/clear-view-escapes.svg">
-    <a href="#" class="btn">Get in Touch</a>
-    <nav>
-      <ul>
-        <li>
-          <a href="#our-beginning">Our Beginning</a>
-        </li>
-        <li>
-          <a href="#features">Features</a>
-        </li>
-        <li>
-          <a href="#testimonials">Testimonials</a>
-        </li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="wrapper">
+      <div class="site-header__logo">
+          <img src="assets/images/icons/clear-view-escapes.svg">
+      </div>
+        
+        <div class="site-header__btn-container">
+            <a href="#" class="btn">Get in Touch</a>
+        </div>
+        <nav class="primary-nav primary-nav--pull-right">
+          <ul>
+            <li>
+              <a href="#our-beginning">Our Beginning</a>
+            </li>
+            <li>
+              <a href="#features">Features</a>
+            </li>
+            <li>
+              <a href="#testimonials">Testimonials</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
   </header>
 
   <div class="large-hero">
@@ -142,12 +149,10 @@
 
   <div id="testimonials" class="page-section page-section--testimonials">
     <div class="wrapper">
-
       <h2 class="section-title section-title--blue">
         <img class="section-title__icon" src="assets/images/icons/comment.svg"> Real
         <strong>Testimonials</strong>
       </h2>
-
       <div class="row row--gutters row--equal-height-at-medium generic-content-container row--t-padding">
         <div class="row__medium-4">
           <div class="testimonial">
@@ -164,7 +169,9 @@
         </div>
         <div class="row__medium-4">
           <div class="testimonial">
-            <img class="testimonial__photo" src="assets/images/testimonial-john.jpg">
+            <div class="testimonial__photo">
+              <img src="assets/images/testimonial-john.jpg">
+            </div>
             <h3 class="testimonial__title">John Smith</h3>
             <h4 class="testimonial__subtitle">4 Time Escaper</h4>
             <p>&ldquo;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -174,7 +181,9 @@
         </div>
         <div class="row__medium-4">
           <div class="testimonial">
-            <img class="testimonial__photo" src="assets/images/testimonial-cat.jpg">
+            <div class="testimonial__photo">
+              <img src="assets/images/testimonial-cat.jpg">
+            </div>
             <h3 class="testimonial__title">Cat McKitty</h3>
             <h4 class="testimonial__subtitle">6 Time Escaper</h3>
               <p>&ldquo;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -187,11 +196,14 @@
     </div>
   </div>
 
-  <footer>
-    <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved.
-      <a href="#" class="btn btn--orange">Get in Touch</a>
-    </p>
+  <footer class="site-footer">
+    <div class="wrapper">
+      <p>
+        <span claas="site-footer__text">Copyright &copy; 2016 Clear View Escapes. All rights reserved.</span><a href="#" class="btn btn--orange">Get in Touch</a>
+      </p>
+    </div>
   </footer>
+  <script type="text/javascript" src="/assets/scripts/App.js"></script>
 </body>
 
 </html>

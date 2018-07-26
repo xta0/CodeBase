@@ -1,0 +1,10 @@
+.site-footer{
+    background-color: $mainBlue;
+    color: #FFF;
+    padding: .5rem 0;
+    text-align: center;
+    &__text{
+        font-weight: 300;
+        margin-right: 1.5rem;
+    }
+}
