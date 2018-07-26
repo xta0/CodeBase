@@ -1,3 +1,0 @@
-Fred Bloggs,Manager,Male,45
-Laral Smith,Cook,Female,23
-Debbie Watts,Professor,Female,38
