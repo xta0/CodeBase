@@ -60,4 +60,5 @@ var myModuleInstance = new myModule();
 console.log(myModuleInstance.hello()); // 'hello!'
 console.log(myModuleInstance.goodbye()); // 'goodbye!'
 
-//6
+//6launch.json
+tasks.json

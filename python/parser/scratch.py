@@ -25,3 +25,11 @@ print(re.findall(reg1,str1))
 reg2 = r'(?:[^\\]|(?:\\.))*'
 str2 = "I say, \"hello\""
 print(re.findall(reg2, str2))
+
+def sumnums(sentence): 
+    return sum([int(num) for num in re.findall(r'[0-9]+',sentence)])
+
+
+
+
+
