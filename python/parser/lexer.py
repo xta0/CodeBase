@@ -6,20 +6,29 @@ tokens = (
     'LANGLE', # <
 )
 # HTML Tokens
-def t_WHITESPACE(stoken):
-    regexr = r' '
-    pass
-
-def t_STRING(token):
-    regexr = r'"[^"]+"'
+def t_RANGLE(token):
+    r'>'
+    return token
+def t_LANGLESLASH(token):
+    r'<\/'
     return token
 
 def t_NUMBER(token):
-    regexr = r'[0-9]+'
+    r'[0-9]+'
+    token.value = int(token.value)
+    return token;
+
+# math double quote string <a href = "abc" />
+def t_STRING(token):
+    r'"[^"]+"'
     return token
 
+def t_WHITESPACE(stoken):
+    r' '
+    pass
+
 def t_WORD(token):
-    regexr = r'[^ <>]+'
+    r'[^ <>]+'
     return token        
 
 # Javascript tokens
