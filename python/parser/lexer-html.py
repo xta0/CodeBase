@@ -4,7 +4,7 @@ import re
 
 tokens = (
     'LANGLE', # <
-    'LANGLESLASH' #</
+    'LANGLESLASH', #</
     'RANGLE', #>
     'EQUAL', #=
     'STRING', #"hello"
@@ -12,9 +12,23 @@ tokens = (
 )
 t_ignore = ' ' #shortcut for whitespaces
 
+# ignore state
+states = (
+    ('htmlcomment','exclusive'),
+)
+def t_htmlcomment(token):
+    r'<!--'
+    token.lexer.begin('htmlcomment')
+
+def t_htmlcomment_end(token):
+    r'-->'
+    token.lexer.lineno += token.value.count('\n')
+    token.lexer.begin('INITIAL')
+
+
 # HTML Tokens
 def t_LANGLESLASH(token):
-    r'<\/'
+    r'</'
     return token
 
 def t_LANGLE(token):
@@ -36,12 +50,8 @@ def t_STRING(token):
     token.value = token.value[1:-1] #remove ""
     return token
 
-# def t_WHITESPACE(token):
-#     r' '
-#     pass
-
 def t_WORD(token):
-    r'[^ <>]+'
+    r'[^ <>\n]+'
     return token     
 
 def t_NUMBER(token):
@@ -49,7 +59,21 @@ def t_NUMBER(token):
     token.value = int(token.value)
     return token
 
-webpage = 'This is <b>my</b> webpage!'
+def t_htmlcomment_error(token):
+    token.lexer.skip(1)
+
+def t_newline(token):
+    r'\n'
+    token.lexer.lineno += 1
+    pass
+
+
+
+webpage =  '''This is <!-- comment --> 
+<b>my</b> webpage!'''
+# webpage = """This is 
+# <b>my</b> webpage!"""
+# webpage = 'hello <!-- comment --> all'
 htmllexer = lex.lex()
 htmllexer.input(webpage)
 while True:
