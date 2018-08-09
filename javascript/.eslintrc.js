@@ -8,22 +8,6 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        'no-console': 'off',
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        'no-console': 'off'
     }
 };

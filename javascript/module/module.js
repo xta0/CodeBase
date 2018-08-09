@@ -59,6 +59,3 @@ var myModule = require('./module1');
 var myModuleInstance = new myModule();
 console.log(myModuleInstance.hello()); // 'hello!'
 console.log(myModuleInstance.goodbye()); // 'goodbye!'
-
-//6launch.json
-tasks.json
