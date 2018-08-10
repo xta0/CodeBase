@@ -1,11 +1,3 @@
-function Person(firstname, lastname){
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.greet = function(msg){
-        console.log(msg);
-    }
+module.exports.greet = function(){
+    console.log("greet2");
 }
-Person.prototype.greet = function(){
-    console.log('Hello ' + this.firstname + ' ' + this.lastname);
-}
-module.exports = Person;
