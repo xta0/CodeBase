@@ -1,4 +1,4 @@
-var Emitter = require('./emmiter')
+var Emitter = require('events')
 var emtr = new Emitter()
 emtr.on('greet',function(){
 	console.log('#1 said hello.')
