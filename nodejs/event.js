@@ -1,12 +1,16 @@
-var obj = {
-	greet: 'hello'
+var EventEmitter = require ('events')
+var util = require ('util')
+
+function MyEmitter(){
+	EventEmitter.call(this)
 }
+util.inherits(MyEmitter, EventEmitter)
 
-obj['greet'] = 'greet'
-console.log(obj.greet)
-
-var arr = []
-
-arr.push(function(){
-	console.log('Hello World!')
+MyEmitter.prototype.greet = function(key,data){
+	this.emit(key,data)
+}
+var emitter = new MyEmitter()
+emitter.on('Hello', function(data){
+	console.log('event triggered! msg: '+data)
 })
+emitter.greet('Hello','Some_data')
