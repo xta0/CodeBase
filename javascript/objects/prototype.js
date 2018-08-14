@@ -8,4 +8,7 @@ function Person(firstname, lastname){
 Person.prototype.greet = function(){
      console.log('Hello ' + this.firstname + ' ' + this.lastname);
 }
-// var p = new Person("")
+
+var john = new Person("John","Doe");
+john.greet(); //undefined
+john.greet("Hello"); 
