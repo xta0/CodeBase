@@ -22,6 +22,9 @@ int main(){
     obj.vec.push_back("1");
     cout<<sizeof(obj)<<endl;
 
+    int a = 10;
+    int b = a;
+    printf("%p,%p",&a,&b);
 
 
     return 0;

@@ -1,4 +1,6 @@
 
+
+//Object - Literal
 var flight = {
 	airline: 'Oceanic',
 	departure: {
@@ -12,6 +14,8 @@ var stooge = {
 	"last-name": "Howard",
 	"nick": "MotherFuckerHowie"
 };
+
+//
 
 //log property
 var logProperties = function (obj) {
