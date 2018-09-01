@@ -67,8 +67,6 @@ def t_newline(token):
     token.lexer.lineno += 1
     pass
 
-
-
 webpage =  '''This is <!-- comment --> 
 <b>my</b> webpage!'''
 # webpage = """This is 

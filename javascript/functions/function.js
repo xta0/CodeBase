@@ -17,3 +17,5 @@ function factorial(num) {
     }
 }
 factorial(19);
+
+console.log(factorial.prototype)
