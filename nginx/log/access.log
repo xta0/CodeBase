@@ -71,3 +71,5 @@
 127.0.0.1 - - [07/Sep/2018:23:46:45 -0400] "GET /sockjs-node/info?t=1536378405815 HTTP/1.1" 404 200 "http://127.0.0.1:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
 127.0.0.1 - - [07/Sep/2018:23:55:19 -0400] "GET /sockjs-node/info?t=1536378919804 HTTP/1.1" 404 200 "http://127.0.0.1:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
 127.0.0.1 - - [08/Sep/2018:00:12:25 -0400] "GET /sockjs-node/info?t=1536379945881 HTTP/1.1" 404 200 "http://127.0.0.1:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+127.0.0.1 - - [14/Sep/2018:16:35:44 -0400] "GET / HTTP/1.1" 200 228 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+127.0.0.1 - - [14/Sep/2018:16:35:56 -0400] "GET / HTTP/1.1" 200 228 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
