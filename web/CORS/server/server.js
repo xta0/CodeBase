@@ -24,16 +24,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  // res.render('index', { msg: 'success!' });
-  res.json('test');
-});
-
-//in a route, anytime something has a : in front it is a wildcard!
-//wildcard, will match anything in the slot
-app.get('/story/:storyId', (req, res) => {
-  //the req.params object alwways exists
-  //it will have a property for each wildcard in the route
-  res.send(`<h1>${req.params.storyId}</h1>`);
+  res.json('success');
 });
 
 app.get('/login', (req, res) => {
