@@ -1,7 +1,9 @@
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
 //setup view engines
 app.set('view engine', 'ejs');
@@ -10,6 +12,7 @@ app.set('views', path.join(__dirname, 'views'));
 //middleware
 app.use(express.static('public'));
 //create req.body
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -33,6 +36,7 @@ app.get('/login', (req, res) => {
 app.post('/process_login', (req, res) => {
   //save user name in cookie
   // send them to welcome page
+
   const username = req.body.username;
   const password = req.body.password;
   if (password === 'x') {
@@ -43,29 +47,27 @@ app.post('/process_login', (req, res) => {
     res.redirect('/login?msg=fail');
   }
 });
-app.get('/welcome', (req, res) => {
-  res.render('welcome', { username: req.cookies.username });
+
+app.post('/transaction', (req, res) => {
+  console.log(req.body);
+  console.log('cookie: ', req.cookies);
+  const url = path.join(__dirname + '/Files/trans.json');
+  const rawdata = fs.readFileSync(url, 'utf-8');
+  let jsondata = JSON.parse(rawdata);
+  const trans = [...jsondata, { name: req.body.name, amount: req.body.amount }];
+  const data = JSON.stringify(trans);
+  fs.writeFileSync(url, data);
+  res.redirect('/welcome');
 });
 
-app.get('/statement', (req, res, next) => {
-  //res has a download method, takes 2 args:
-  //1. filename
-  //2. optionally, what you want the filename to download as
-
-  //download is setting the headers!
-  //1. content-dispostion to attachment, with a filename of the 2nd arg
-  res.download(path.join(__dirname, 'pics/node.png'), 'download.png', err => {
-    //if there is an error in sending file, headers may already be sent
-    if (err) {
-      //res.headerSent is a bool, true if headers are already sent
-      if (!res.headersSent) {
-        res.redirect('/download/error');
-      }
-    }
-  });
-
-  //this will render image in browser
-  // res.sendFile(path.join(__dirname, 'pics/node.png'))
+app.get('/welcome', (req, res) => {
+  //fetch data from file
+  const rawdata = fs.readFileSync(
+    path.join(__dirname + '/Files/trans.json'),
+    'utf-8'
+  );
+  const trans = JSON.parse(rawdata);
+  res.render('welcome', { username: req.cookies.username, trans });
 });
 
 app.get('/logout', (req, res) => {
