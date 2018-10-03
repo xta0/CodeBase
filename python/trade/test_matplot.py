@@ -1,6 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-
+import plot
+%matplotlib inline
 def test_run():
     df = pd.read_csv("data/aapl.csv")
     

@@ -20,6 +20,7 @@ var urString = "Jayson"
 var mutableDouble = 1.0
 mutableDouble = 2.0
 
+// using "let" keyword  for constant variables
 let constantDouble = 2.0
 //constantDouble = 3.0 //error
 

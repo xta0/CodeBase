@@ -34,3 +34,10 @@ def visualize_one_die(roll_data):
     
 roll_data = simulate_dice_rolls(500)
 visualize_one_die(roll_data)
+
+p=[0.2, 0.2, 0.2, 0.2, 0.2]
+world=['green', 'red', 'red', 'green', 'green']
+Z = 'red'
+pHit = 0.6
+pMiss = 0.2
+
