@@ -1,42 +1,36 @@
-# p=[0.2, 0.2, 0.2, 0.2, 0.2]
-# world=['green', 'red', 'red', 'green', 'green']
-# Z = 'red'
-# measurements = ['red','green']
-# pHit = 0.6
-# pMiss = 0.2
+#Modify the previous code so that the robot senses red twice.
 
-# #sense
-# def sense(p, Z):
-# 	q = []
-# 	for index,val in enumerate(p):
-# 		color = world[index]
-# 		if(color == Z):
-# 			q.append( val*pHit )
-# 		else:
-# 			q.append(val*pMiss )
+p=[0.2, 0.2, 0.2, 0.2, 0.2]
+world=['green', 'red', 'red', 'green', 'green']
+measurements = ['red', 'red']
+motions = [1,1]
+pHit = 0.6
+pMiss = 0.2
+pExact = 0.8
+pOvershoot = 0.1
+pUndershoot = 0.1
 
-# 	total = sum(q)
-# 	for i in range(len(q)):
-# 		q[i] = q[i]/total
+def sense(p, Z):
+    q=[]
+    for i in range(len(p)):
+        hit = (Z == world[i])
+        q.append(p[i] * (hit * pHit + (1-hit) * pMiss))
+    s = sum(q)
+    for i in range(len(q)):
+        q[i] = q[i] / s
+    return q
 
-# 	return q
-
-# for m in measurements:
-# 	p = sense(p,m)
-
-# print(p)
-
-# move
-p=[0, 1, 0, 0, 0]
 def move(p, U):
-	q = p
-	for index in range(0,U):
-		tmp = q[-1]
-		for i in range(1,len(q)):
-			q[-i] = q[-i-1]
-		q[0] = tmp
-	return q
+    q = []
+    for i in range(len(p)):
+        s = pExact * p[(i-U) % len(p)]
+        s = s + pOvershoot * p[(i-U-1) % len(p)]
+        s = s + pUndershoot * p[(i-U+1) % len(p)]
+        q.append(s)
+    return q
 
-print(move(p, 1))
-move(p,1)
-
+for k in range(len(measurements)):
+    p = sense(p, measurements[k])
+    p = move(p, motions[k])
+    
+print p         
