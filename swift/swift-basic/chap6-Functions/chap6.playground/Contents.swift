@@ -1,13 +1,16 @@
-// Playground - noun: a place where people can play
-
 import UIKit
+
 
 func addNums(x: Int,y: Int ) -> Int
 {
     return x+y
 }
 
-addNums(10, 10)
+
+//swift 1.2 可以忽略 x,y
+//addNums(10, 10)
+//swift 2.0必须加上x,y
+addNums(x: 10, y: 10)
 
 func noParams1()->()
 {}
@@ -29,7 +32,7 @@ lerp(from: CGPoint(x:100,y:100), to: CGPoint(x:200,y:200), delta: 0.2)
 
 //make external name equal to internal param's name :
 //using hash tag
-func SubtractNums(#x:Int , #y:Int) -> Int
+func SubtractNums(x:Int , y:Int) -> Int
 {
     return x-y;
 }
@@ -66,24 +69,25 @@ func maxof(numbers:Int ... ) ->Int
 }
 
 
+/*
+ * 
+ */
 var string:String = "entryString"
 
-//const,variable, inout params
+//默认参数为const，传引用
 func addEntry1(string:String)
 {
     //by default string can not be modified
     //string += "!" //error
 }
 
-
-//const,variable, inout params
-func addEntry2(var string:String)
-{
-    string += "!" //only modify the local value, caller's value is not modified
-    
-}
-
-func addEntry3(inout string:String)
+// var is deprecated after swift 1.2
+//func addEntry2(var string: String)
+//{
+//    string += "!" //only modify the local value, caller's value is not modified
+//
+//}
+func addEntry3( string:inout String)
 {
     string += "!"
 }
@@ -117,22 +121,23 @@ let tuple = returnATupleFunc()
 
 println(tuple.0,tuple.1)
 
-func repeat(count:Int, task:()->())
+func repeatWork(count:Int, task:()->())
 {
-    for i in 0...count
+    for _ in 0...count
     {
         task()
     }
 }
 
-func print()->(){ println("hello")}
-let proc:()->() = { println("hello")}
+
+func print()->(){ print("hello")}
+let proc:()->() = { print("hello")}
 
 //repeat function
-repeat(2,proc)
-repeat(2,print)
+repeatWork(2,proc)
+repeatWork(2,print)
 //if the block is the last param of the function:
-repeat(2){println("hello")}
+repeatWork(2){print("hello")}
 
 
 
