@@ -10,7 +10,8 @@ func iterate(pointer: UnsafeMutablePointer<COpaquePointer>, callForEach: (COpaqu
         while pointer[i] != nil
         {
             callForEach(pointer[i])
-            i++
+            //i+=1
+            i+=1;
         }
         
         free(pointer)
@@ -30,7 +31,7 @@ let obj = MySwiftClass()
 let obj_ptr:UnsafePointer<Void> = unsafeAddressOf(obj)
 let obj_ptr_shadow: UnsafePointer<Void> = unsafeBitCast(obj, UnsafePointer<Void>.self)
 
-println("%@,%@",obj_ptr,obj_ptr_shadow)
+print(" \(obj_ptr),\(obj_ptr_shadow)")
 
 //size of obj
 let l:UInt = malloc_size(obj_ptr)
