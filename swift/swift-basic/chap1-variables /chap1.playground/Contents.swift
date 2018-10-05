@@ -118,15 +118,24 @@ if let imageSize = imageView.image?.size {
 class Berverage{
     var Category:String
     init(category:String){
-        self.Category = String
+        self.Category = category
     }
 }
 class HotDrink:Berverage{
     var paring:String
     init(category: String, paring: String){
         self.paring = paring;
+        super.init(category: category)
     }
 }
+
+let hotDrink = HotDrink(category: "coffee", paring: "unknow")
+
+print((hotDrink as Berverage).Category)
+if let hotDrink = hotDrink as? Berverage {
+    print(hotDrink.Category)
+}
+
 
 //tenery operators
 var hungury = true

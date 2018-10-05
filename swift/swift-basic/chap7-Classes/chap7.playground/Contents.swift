@@ -10,12 +10,17 @@ class Entity
     
     //all values in swift must have a initial value
     //or it's type must be optional
-    var hp:Int
+    var hp:Int?
     var mp:Int? //default value is nil
     var sp:Int = 10
     
+    //stored properties
+    let title:String = "Senior Achitect"
+    let director: String = "James"
+    
     init(hp:Int)
     {
+        //no need to call super
         self.hp = hp
     }
     
@@ -23,34 +28,35 @@ class Entity
     func addItem(item: String, numItems: Int)
     {
         //todo...
-        for i in 0..<numItems
+        for _ in 0..<numItems
         {
             self.inventory.append(item)
         }
-    
+        
     }
     
     func removeItem(item:String)
     {
         //todo...
-        let optionalIndex = find(self.inventory,item)
+        let optionalIndex = self.inventory.firstIndex(of: item)
+//        let optionalIndex = find(self.inventory,item)
         if let index = optionalIndex
         {
-            self.inventory.removeAtIndex(index)
+            self.inventory.remove(at: index)
         }
     }
-
+    
 }
 
 let entity = Entity(hp: 50)
 entity.hp = 100
 //作为类的method，第一个参数没有external param name , 第二个参数有
-entity.addItem("monster", numItems: 3)
+entity.addItem(item: "monster", numItems: 3)
 
 if(entity.mp != nil)
 {
     let wrapped_mp = entity.mp!
-    println(wrapped_mp)
+    print(wrapped_mp)
 }
 
 
@@ -59,7 +65,7 @@ if(entity.mp != nil)
 class Popeye : Entity
 {
     let favoriteFood:String
-
+    
     init()
     {
         self.favoriteFood = "Spanish"
@@ -70,22 +76,21 @@ class Popeye : Entity
     
     func sing()
     {
-        println("I'm a Popeye the sailor man")
+        print("I'm a Popeye the sailor man")
     }
     
     override func addItem(item: String, numItems: Int) {
         
-        if item == self.favoriteFood
-        {
-            hp += 10 * numItems
+        if item == self.favoriteFood{
+            hp! += 10 * numItems
             
         }
         else
         {
-            super.addItem(item, numItems: numItems)
+            super.addItem(item: item, numItems: numItems)
         }
     }
-
+    
 }
 
 //property observers
@@ -95,15 +100,15 @@ class Car
     {
         willSet
         {
-            println("will set the speed to : \(speed)")
-        
+            print("will set the speed to : \(speed)")
+            
         }
         didSet
         {
-            println("did set the speed to : \(speed)")
+            print("did set the speed to : \(speed)")
         }
     }
-
+    
 }
 
 let pCar = Car()
@@ -137,7 +142,7 @@ if let home = paul.residence
     {
         if let building = postalAddress.buildingNumber
         {
-            if let convertedNumber = building.toInt()
+            if let convertedNumber = Int(building)
             {
                 addressNumber = convertedNumber
             }
@@ -147,10 +152,10 @@ if let home = paul.residence
 //the above codes are cubersome
 //optional chaining:
 //?意思是：如果paul.residence?不为nil，则返回paul.residence
-if let addressNumber = paul.residence?.address?.buildingNumber?.toInt()
+if let addressNumber = paul.residence?.address?.buildingNumber
 {
     //...
-    println("\(addressNumber)")
+    print("\(addressNumber)")
 }
 
 
