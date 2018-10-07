@@ -2,28 +2,35 @@
 
 import UIKit
 
-// enums
+/*
+ * Enums (Value Type)
+ */
 
-enum Suit
-{
+//default type is int
+enum PrimaryColor{
+    case Red
+    case Blue
+    case Yellow
+}
+enum Suit{
     case Clubs,Diamonds,Hearts,Spades
 }
 
 var cardSuit1 = Suit.Diamonds
-
 let cardSuit2:Suit = .Clubs
 
 switch cardSuit1
 {
 case .Clubs:
-    println("Clubs")
+    print("Clubs")
 case .Diamonds:
-    println("Diamonds")
+    print("Diamonds")
 case .Hearts:
-    println("Hearts")
+    print("Hearts")
 case .Spades:
-    println("Spades")
+    print("Spades")
 }
+
 
 enum Rank:Int
 {
@@ -37,7 +44,7 @@ let orank = Rank(rawValue: 3) //optional
 
 if let rank = orank
 {
-    println(rank.rawValue)
+    print(rank.rawValue)
 }
 
 //associated values
@@ -58,7 +65,7 @@ enum Rank2
             return "Queue"
         case .King :
             return "King"
-        
+            
         case .Num(let val):
             return String(val)
         }
@@ -88,11 +95,41 @@ myRating.rawValue
 
 
 
+/*
+ Struct (Value Type)
+ */
+struct PictureFrame{
+    var width = 5
+    var height = 7
+    var thickness: Double = 1.5
+    var area: Int{
+        get{
+            return width*height
+        }
+    }
+}
+var p = PictureFrame()
+print(p.area)
+var p2 = p; //copy
+p2.width = 10
+print(p.area) //no change
 
-
-
-
-
-
-
+struct Beer{
+    var style = "Pale Ale"
+    var percentAlcohol = 5
+    static var cheerDict = ["English":"Cheers!","German":"Prost"]
+    var suggestedVolumePreserving:String {
+        get {
+            return "\(12/(percentAlcohol/5)) ounces"
+        }
+    }
+    static func cheers(language: String){
+        if let cheers = cheerDict[language]{
+            print("\(cheers)")
+        }
+    }
+}
+var happyBeer = Beer(style: "Lager", percentAlcohol:6)
+print(happyBeer.suggestedVolumePreserving)
+Beer.cheers(language: "English")
 

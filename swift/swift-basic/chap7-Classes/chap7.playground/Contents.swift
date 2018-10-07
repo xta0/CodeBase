@@ -18,8 +18,7 @@ class Entity
     let title:String = "Senior Achitect"
     let director: String = "James"
     
-    init(hp:Int)
-    {
+    init(hp:Int){
         //no need to call super
         self.hp = hp
     }

@@ -1,8 +1,8 @@
-// Playground - noun: a place where people can play
-
 import UIKit
 
-//tuples
+/*
+ tuples
+ */
 
 
 //unnamed tuples
@@ -10,14 +10,14 @@ let tipAndTotal = (4.00,25)
 let tipAndTotalExplicit:(Double,Double) = (3.00,200)
 
 //access
-tipAndTotal.0
-tipAndTotal.1
+print(tipAndTotal.0)
+print(tipAndTotal.1)
 
 
-//binding 
+//binding
 let(a,b) = tipAndTotal
-println(a)
-println(b)
+print(a)
+print(b)
 
 //named tuples
 let tipAndTotalExplicit2:(tipAmt:Double,total:Double) = (3.00,200)
@@ -39,7 +39,7 @@ func calcTipWithTipPct(tip: Double) -> (tipAmt:Double,total:Double)
 func return3values() -> (a:String,b:String,c:String)
 {
     return ("a","b","c")
-
+    
 }
 
 let error = (404,"Not Found")
@@ -47,15 +47,15 @@ let error = (404,"Not Found")
 switch error
 {
 case(200,_):
-    println("success")
+    print("success")
 case(_,"Not Found"):
-    println("err")
+    print("err")
 case(300...399,_):
-    println("Redirect")
+    print("Redirect")
 case(500,let description):
-    println("\(description),please")
+    print("\(description),please")
 case let (code,description):
-    println("unexpected error code")
+    print("\(code),\(description)")
 }
 
 var name1 = "Ray"

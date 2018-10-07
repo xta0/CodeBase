@@ -47,6 +47,7 @@ public:
 int main()
 {
     runCode();
+    //pass parameter to thread
     std::thread t1(func1,"abc");
     thread_guard g(t1);
 
