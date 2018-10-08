@@ -18,7 +18,7 @@ def quick_sort(array, left, right):
             #swap
             array[l],array[r] = array[r], array[l]
 
-    array[left],array[l] = array[l],array[left]
+    array[left],array[r] = array[r],array[left]
 
     #recursive 
     quick_sort(array,left,l-1)

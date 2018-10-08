@@ -1,4 +1,4 @@
-class Node():
+class ListNode():
     def __init__(self,val):
         self.val = val
         self.next = None
@@ -8,7 +8,7 @@ def merge_two_sorted_list(l1, l2):
     head = tmp = None
     while l1 and l2:
         node = None
-        if l1.val < l2.val
+        if l1.val < l2.val:
             node = ListNode(l1.val)
             l1 = l1.next
         else:
