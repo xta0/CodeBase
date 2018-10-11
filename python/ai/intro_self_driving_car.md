@@ -8,3 +8,9 @@
     - Numpy, Scipy, Matplotlib
 - Gaussian Distribution
     - Central Limit Theorm
+- Localization
+
+## Matrix
+
+- Kalman Filter
+- Motion
