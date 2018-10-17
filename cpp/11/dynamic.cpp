@@ -16,5 +16,4 @@ class Cat: public Animal{
     void speak() override {
         cout<<__func__<<endl;
     }
-
-}
+};

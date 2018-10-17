@@ -142,14 +142,4 @@ var hungury = true
 hungury ? print("Let's eat!") : print("Let's wait.")
 
 
-/*
- * Any & AnyObject
- */
-/*
- Swift provides two special types for working with nonspecific types:
- 
- Any can represent an instance of any type at all, including function types.
- AnyObject can represent an instance of any class type.
- */
-let anyArray: [Any] = [1,2,"hello",true]
-print(anyArray)
+
