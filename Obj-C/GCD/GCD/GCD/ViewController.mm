@@ -7,17 +7,22 @@
 //
 
 #import "ViewController.h"
+#import <libkern/OSAtomic.h>
+#include <mutex>
 
 @interface ViewController ()
-
+@property(nonatomic,assign) int j;
 @end
 
-@implementation ViewController
+@implementation ViewController{
+    std::mutex _m;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test_barrier];
+//    [self test_barrier];
+    [self testAtomic];
 
 }
 
@@ -76,6 +81,19 @@
     
     //this will enqueue the in main runloop
     NSLog(@"Clicked!");
+}
+
+- (void)testAtomic{
+    __weak typeof(self) weakSelf = self;
+//    dispatch_queue_t queue = dispatch_get_global_queue(0, DISPATCH_QUEUE_PRIORITY_DEFAULT);
+   dispatch_queue_t queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_CONCURRENT);
+    for(int i=0;i<100;i++){
+        dispatch_async(queue, ^{
+            std::lock_guard<std::mutex> guard(_m);
+            self.j = self.j+1;
+            printf("%d\n",self.j);
+        });
+    }
 }
 
 @end
