@@ -79,6 +79,15 @@ int main(){
     auto itor = m.begin();
     map<KeyObject,int> ::value_type p = *itor;
     cout<<p.first.get_name()<<endl;
+
+
+    map<int,int> cache = {{1,10},{2,11},{3,12}};
+    for(auto itor = cache.begin(); itor!=cache.end(); itor++){
+        cout<<itor->first<<","<<itor->second<<endl;
+    }
+    for(auto& p:cache){
+        cout<<p.first<<","<<p.second<<endl;
+    }
     
 
     
