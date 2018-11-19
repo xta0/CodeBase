@@ -12,8 +12,6 @@ import matplotlib.pyplot as plt
 """
 
 class Car(object):
-    
-    
     # Car constructor 
     # Called when you write car.Car(_, _, _)
     def __init__(self, position, velocity, world,color):
