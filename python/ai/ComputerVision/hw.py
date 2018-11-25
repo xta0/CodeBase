@@ -20,17 +20,15 @@ def standardize_input(image):
     standard_im = cv2.resize(standard_im,(32,32))
     return standard_im
 
-# 
 def one_hot_encode(label):
-    one_hot_encoded = []
-    if label == "red":
-        one_hot_encoded = [1,0,0]
-    elif label == "yellow":
-        one_hot_encoded = [0,1,0]
-    elif label == "green":
-        one_hot_encoded = [0,0,1]
-    
-    return one_hot_encoded
+    color_map = ["red", "yellow", "green"]
+    one_hot = [0] * len(color_map)
+    try:
+        one_hot[color_map.index(label)] = 1
+        return one_hot
+    except:
+        raise TypeError('Please input red, yellow, or green. Not ', label)
+
 
 def standardize(image_list):
     
@@ -137,15 +135,19 @@ def drawMask(rgb_image, v_image, mask_image):
 
 
 def create_feature(rgb_image):
-    # Convert to HSV
+   # Convert to HSV
     hsv = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2HSV)
     v = hsv[:,:,2] #0-255
-    # Add up all the pixel values in the V channel
-    sum_brightness = np.sum(v)
-    area = h.shape[0]*h.shape[1] # pixels
-    # find the avg
-    feature = sum_brightness/area
-    return feature
+    
+    #divide the matrix vertically into 3 regions
+    arr = np.array_split(v,3,axis=0)
+    
+    #sum each region
+    red = np.sum(arr[0])
+    yellow = np.sum(arr[1])
+    green = np.sum(arr[2])
+    
+    return (red,yellow,green)
 
 # Classify image using HSV channel
 def classify_image(rgb_image):
@@ -191,6 +193,15 @@ def classify_image(rgb_image):
                 if h in GH and s in GS and v in GV:
                     green += 1
   
+    return (red,yellow,green)
+
+
+def estimate_label(rgb_image):
+    #1. using hsv color pixels
+    # red, yellow, green = classify_image(crop_image(rgb_image))
+    #2. using brightness 
+    red, yellow, green = create_feature(crop_image(rgb_image))
+    
     if red > green and red > yellow:
         return [1,0,0]
     if green > red and green > yellow:
@@ -198,10 +209,8 @@ def classify_image(rgb_image):
     if yellow > red and yellow > green:
         return [0,1,0]
     
- 
+    #default value is red
     return [1,0,0]
-def estimate_label(rgb_image):
-    return classify_image(crop_image(rgb_image))
 
 
 ##########
