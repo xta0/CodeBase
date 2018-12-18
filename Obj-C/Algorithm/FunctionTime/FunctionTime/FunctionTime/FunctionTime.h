@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FunctionTime : NSObject
 
+- (void)printFunctionTime:(NSArray<NSArray* >*) logs;
+    
+
+
 @end
 
 NS_ASSUME_NONNULL_END

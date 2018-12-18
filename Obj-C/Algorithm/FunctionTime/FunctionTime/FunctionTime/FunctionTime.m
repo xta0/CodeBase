@@ -10,4 +10,17 @@
 
 @implementation FunctionTime
 
+- (void)printFunctionTime:(NSArray<NSArray* >*) logs{
+    NSMutableDictionary* dict =  [NSMutableDictionary new];
+    for(NSArray* item in logs){
+        NSString* name = item[0];
+        NSNumber* timestamp = item[1];
+        if(dict[name]){
+             NSLog(@"%@: %d", name,[timestamp intValue] - [dict[name] intValue]);
+            
+        }
+        dict[name] = timestamp;
+    }
+}
+
 @end

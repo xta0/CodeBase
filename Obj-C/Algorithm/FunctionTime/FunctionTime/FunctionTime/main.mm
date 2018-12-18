@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FunctionTime.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -37,7 +38,9 @@ int main(int argc, const char * argv[]) {
             {"foo",15},
             {"main",25},
         });
-        NSLog(@"Hello, World!");
+        
+        FunctionTime* ft = [FunctionTime new];
+        [ft printFunctionTime:@[@[@"main",@(0)],@[@"foo",@(10)],@[@"foo",@(15)],@[@"main",@(25)]]];
     }
     return 0;
 }
