@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		45F66B0721C8883600241F03 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 45F66B0621C8883600241F03 /* main.mm */; };
+		45F66B0F21C9D74200241F03 /* MinHeap.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F66B0E21C9D74200241F03 /* MinHeap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		45F66B0321C8883600241F03 /* SortedArrayIterator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SortedArrayIterator; sourceTree = BUILT_PRODUCTS_DIR; };
 		45F66B0621C8883600241F03 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		45F66B0D21C9D74200241F03 /* MinHeap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinHeap.h; sourceTree = "<group>"; };
+		45F66B0E21C9D74200241F03 /* MinHeap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinHeap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				45F66B0621C8883600241F03 /* main.mm */,
+				45F66B0D21C9D74200241F03 /* MinHeap.h */,
+				45F66B0E21C9D74200241F03 /* MinHeap.m */,
 			);
 			path = SortedArrayIterator;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F66B0721C8883600241F03 /* main.mm in Sources */,
+				45F66B0F21C9D74200241F03 /* MinHeap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
