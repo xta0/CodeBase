@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MinHeap : NSObject
 
 - (id)initWithCapacity:(NSInteger) sz;
-- (id)initWithArray:(NSArray* )arr;
+- (id)initWithArray:(NSArray* )arr Capacity:(NSInteger)cp;
 - (void)push:(NSNumber* )num;
 - (void)pop;
 - (NSNumber* )top;
 - (NSInteger)count;
-- (NSInteger)size;
+- (NSInteger)capacity;
 
 @end
 

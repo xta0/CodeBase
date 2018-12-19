@@ -22,11 +22,11 @@
     return self;
 }
 
-- (id)initWithArray:(NSArray* )arr{
+- (id)initWithArray:(NSArray* )arr Capacity:(NSInteger)cp{
     self = [super init];
     if(self){
         _arr = [[NSMutableArray alloc]initWithArray:arr];
-        _sz = _arr.count;
+        _sz = cp;
         [self makeHeap];
     }
     return self;
@@ -55,7 +55,7 @@
     return _arr.count;
 }
 
-- (NSInteger)size{
+- (NSInteger)capacity{
     return _sz;
 }
 - (NSString* )description{
@@ -65,7 +65,7 @@
 #pragma mark - private
 
 - (void)makeHeap{
-    for(NSInteger i=_sz/2+1; i>=0; i--){
+    for(NSInteger i=_arr.count/2+1; i>=0; i--){
         [self siftDown:i];
     }
 }

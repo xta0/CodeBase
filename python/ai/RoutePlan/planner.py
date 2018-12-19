@@ -1,4 +1,7 @@
 
+import math
+
+#A* Algorithm
 class PathPlanner():
     """Construct a PathPlanner Object"""
     def __init__(self, M, start=None, goal=None):
@@ -72,3 +75,82 @@ class PathPlanner():
         print("No Path Found")
         self.path = None
         return False
+
+    def create_closedSet(self):
+        return set()
+    
+    def create_openSet(self):
+        if self.start != None:
+            return {self.start}
+        return None
+
+    def create_cameFrom(self):
+        return {}
+
+    def create_gScore(self):
+        gScore = [math.inf] * len(self.map.roads)
+        gScore[self.start] = 0.0
+        return gScore
+
+    def create_fScore(self):    
+        fScore = [math.inf] * len(self.map.roads)
+        fScore[self.start] = self.distance(self.start,self.goal)
+        return fScore
+
+    def set_map(self, M):
+        """Method used to set map attribute """
+        self._reset()
+        self.start = None
+        self.goal = None
+        
+        self.map = M
+
+    def set_start(self,start):
+        self._reset()
+        self.start = start
+
+    def set_goal(self, goal):
+        self._reset()
+        self.goal = goal
+
+    def is_open_empty(self):
+        """returns True if the open set is empty. False otherwise. """
+        return not len(self.openSet)
+    
+    def get_current_node(self):
+        ans = None
+        minv = math.inf
+        for node in self.openSet:
+            if self.fScore[node] < minv:
+                minv = self.fScore[node]
+                ans = node
+        return ans
+
+    def get_neighbors(self, node):
+        return self.map.roads[node]
+    
+    def get_gScore(self, node):
+        return self.gScore[node]
+    
+    def distance(self,node_1,node_2):
+        pt1 = self.map.intersections[node_1]
+        pt2 = self.map.intersections[node_2]
+        #pt2, pt2 are tupels
+        return math.sqrt( (pt1[0]-pt2[0])**2 + (pt1[1]-pt2[1])**2 )
+
+    def get_tentative_gScore(self, current, neighbor):
+        return self.gScore[current] + self.distance(current, neighbor)
+
+    def heuristic_cost_estimate(self, node):
+        return self.distance(node,self.goal)
+    
+    def calculate_fscore(self, node):
+        return self.gScore[node] + self.heuristic_cost_estimate(node)
+
+    def record_best_path_to(self, current, neighbor):
+        self.cameFrom[neighbor] = current
+        self.fScore[current] = self.calculate_fscore(current)
+        self.gScore[neighbor] = self.get_tentative_gScore(current,neighbor)
+        self.fScore[neighbor] = self.calculate_fscore(neighbor)
+        
+    

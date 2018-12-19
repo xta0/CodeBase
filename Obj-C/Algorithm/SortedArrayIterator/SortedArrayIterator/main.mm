@@ -32,6 +32,7 @@
 
 - (id)initWithArray:(NSArray<NSArray* >* )arr;
 - (NSArray* )all;
+- (BOOL) hasNext;
 - (NSInteger)next;
 
 @end
@@ -54,7 +55,7 @@
         //initialize minheap
         for(int i=0;i<arr.count;i++){
             int n = [arr[i][0] intValue];
-            _dict[@(n)] = @(0);
+            _dict[@(n)] = @[@(i),@(0)];
             [_minHeap push:@(n)];
         }
     }
@@ -63,20 +64,24 @@
 - (NSArray* )all{
     return nil;
 }
+- (BOOL)hasNext{
+    return _minHeap.count;
+    
+}
 - (NSInteger)next{
+    
     NSInteger res = [[_minHeap top] intValue];
-    NSLog(@"%ld",res);
     [_minHeap pop];
     
     
-    int arrIndex = [_dict[@(res)] intValue];
+    int arrIndex = [_dict[@(res)][0] intValue];
+    int eleIndex = [_dict[@(res)][1] intValue];
     [_dict removeObjectForKey:@(res)];
     NSArray* arr = _lists[arrIndex];
-    int eleIndex = (int)[arr indexOfObject:@(res)];
     if(eleIndex+1 < arr.count){
         id nextN = arr[eleIndex+1];
         [_minHeap push:nextN];
-        _dict[nextN] = @(arrIndex);
+        _dict[nextN] = @[@(arrIndex),@(eleIndex+1)];
     }
         
     
@@ -88,14 +93,14 @@
 int main(int argc, const char * argv[]) {
     
     NSArray<NSArray* >* matrix = @[
-//                                   @[@(-3), @(2), @(4), @(5), @(10), @(18)],
+                                   @[@(-3), @(2), @(4), @(5), @(10), @(18)],
                                    @[@(0), @(1), @(1), @(2)],
-//                                   @[@(-10), @(-5), @(3), @(4), @(9), @(20), @(34)],
+                                   @[@(-10), @(-5), @(3), @(4), @(9), @(20), @(34)],
                                    @[@(6), @(8), @(9)]
                                    ];
     SortedArrayIterator* itor = [[SortedArrayIterator alloc]initWithArray:matrix];
-    while([itor next] != -1){
-        [itor next];
+    while([itor hasNext]){
+        NSLog(@"%ld",[itor next]);
     }
     
     return 0;
