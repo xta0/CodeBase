@@ -1,42 +1,48 @@
 #include <iostream>
 #include <vector>
-#include "cpp.h"
-
+#include <string>
+#include <map>
+#include <set>
+#include <unordered_set>
+#include <unordered_map>
 using namespace std;
 
-void quickSort(vector<int>& arr, int left, int right){
-    if(left >= right){
-        return ;
-    }
-    //选择轴值为最左边数
-    int pivot = arr[left];
-    int l=left,r=right;
-    while(l != r){
-        //skip掉右边界大于pivot的值
-        while(arr[r] >= pivot && r>l){
-            r--;
-        }
+int partition(vector<int>& arr, int lo, int hi){
+    //a[lo,...,i-1],a[i],a[i+1,...,hi]
+    int p = arr[lo];
+    int i = lo;
+    int j = hi+1;
+    while(true){
         //skip掉左边界小于pivot的值
-        while(arr[l]<=pivot && r>l){
-            l++;
+        do { i++; } while( i<=hi && arr[i] < p );
+        do { j--; } while( arr[j] > p);
+        if( i>=j ){
+            break;
         }
-        //如果走到这里，说明有逆序对交换
-        if(r > l){
-            swap(arr[r],arr[l]);
-        }
+        swap(arr[i],arr[j]);
     }
-    //归位轴值
-    swap(arr[left],arr[l]);
-    //两段分治
-    quickSort(arr,left,l-1);
-    quickSort(arr,l+1, right);
+    //swap pivot
+    swap(arr[lo],arr[j]);
+    return j;
 }
-
-int main()
-{
-    vector<int> arr = {4,2,7,3,7,2,9,1,0,8};
-    quickSort(arr,0,arr.size()-1);
-    logv(arr);
-
+int quickSelect(vector<int>& arr, int lo, int hi, int k){
+    if(lo >= hi){
+        return arr[lo];
+    }
+    int p = partition(arr, lo, hi);
+    int index = (int)arr.size() - p;
+    if( k==index ){
+        return arr[p];
+    }else if( k < index){
+        return quickSelect(arr, p+1, hi, k);
+    }else{
+        return quickSelect(arr,lo,p-1,k);
+    }
+}
+int main(){
+    vector<int> arr = {3,2,1,5,6,4};
+    cout<<quickSelect(arr,0,(int)arr.size()-1, 2);
+    
+    
     return 0;
 }

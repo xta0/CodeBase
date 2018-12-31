@@ -46,6 +46,7 @@ class dns_cache{
     mutable std::shared_mutex entry_mutex;
 public:
     dns_entry find_entry(std::string const& domain ) const{
+        //读锁
         std::shared_lock<std::shared_mutex> lk(entry_mutex);
         auto itor = entries.find(domain);
         if(itor != entries.end()){
@@ -55,6 +56,7 @@ public:
         }
     }
     void update_or_add_entry(std::string const& domain, dns_entry const& dns_details){
+        //写锁
         std::lock_guard<std::shared_mutex> lg(entry_mutex);
         entries[domain] = dns_details;
     }

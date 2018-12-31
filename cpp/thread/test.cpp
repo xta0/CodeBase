@@ -10,9 +10,9 @@ void func(int index){
     
     std::cout << "#thread: " << index << endl;
     std::lock_guard<mutex> guard(m);
-    value += 1;
     cout<<"value: "<<value<<endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    value += 1;
+    // std::this_thread::sleep_for(std::chrono::seconds(1));
     
 }
 
