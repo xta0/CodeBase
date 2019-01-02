@@ -20,13 +20,6 @@ void traverse_recursive(TreeNode* root){
         cout<<root->val;
     }
 }
-void preOrder_Traverse(TreeNode* root){
-    stack<TreeNode* >st;
-    TreeNode* pointer = root;
-    while(root){
-        
-    }
-}
 void inOrder_Traverse(TreeNode* root){
     stack<TreeNode* >st;
     TreeNode* pointer = root;
@@ -42,6 +35,8 @@ void inOrder_Traverse(TreeNode* root){
         }
     }
 }
+
+
 
 
 int main(){
