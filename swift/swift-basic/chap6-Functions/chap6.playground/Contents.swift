@@ -4,8 +4,6 @@ import UIKit
  * Functions
  */
 
-
-
 // local  parameter name
 func addNums(x: Int,y: Int ) -> Int{
     return x+y
@@ -16,12 +14,14 @@ func addNums(x: Int,y: Int ) -> Int{
 //swift 2.0必须加上x,y
 addNums(x: 10, y: 10)
 
-func noParams1()->()
-{}
-
+func noParams1()->(){}
 func noParams2(){}
 
 //external paramter name
+/*
+ argument lable
+ parameter name
+ */
 import CoreGraphics
 
 func lerp(from start:CGPoint, to end:CGPoint, delta t:CGFloat) -> CGPoint

@@ -16,41 +16,23 @@ void mergeSort(vector<int>& v){
     mergeSort(left);
     mergeSort(right);
     //3. merge halves
-    reverse(right.begin(), right.end());
-    int i1=0,i2=right.size()-1,i=0;
-    while(i1 <= i2){
-        if(left[i1] <= right[i2]){
-            v[i] = left[i1];
-            i1++;
-        }else{
-            v[i] = right[i2];
-            i2--;
-        }
-        i++;
-    }
-/*
-    int i1 = 0; //index into left
-    int i2 = 0; //index into right
-    int i = 0; //index of the merged array
+    int i1 = 0;
+    int i2 = 0;
+    int i = 0;
     while(i1<left.size() && i2<right.size()){
         if(left[i1] <= right[i2]){
-            v[i] = left[i1];
-            i1++;
+            v[i++] = left[i1++];
         }else{
-            v[i] = right[i2];
-            i2++;
+            v[i++] = right[i2++];
         }
-        i++;
+
     }
-    //append left half
     while(i1<left.size()){
         v[i++] = left[i1++];
     }
-    //append right half
     while(i2<right.size()){
         v[i++] = right[i2++];
     }
-*/
 }
 
 int main(){
