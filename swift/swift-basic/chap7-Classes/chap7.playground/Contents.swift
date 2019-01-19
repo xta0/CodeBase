@@ -3,8 +3,7 @@
 import UIKit
 
 //declaring a class
-class Entity
-{
+class Entity{
     //properties
     var inventory:[String] = []
     
@@ -114,48 +113,20 @@ let pCar = Car()
 pCar.speed = 100
 
 
-//chaining:
-
-class Address
-{
-    var buildingNumber :String?
-    var streetName: String?
-    var apartmentName: String?
+/*
+ ====
+ Struct
+ ====
+ */
+struct myStruct{
+    var myString:String?
+    var myInt: Int?
+    var myDouble: Double?
 }
-class Residence
-{
-    var address :Address?
-}
-class Person
-{
-    var residence :Residence?
-}
+let ms:myStruct = myStruct(myString: nil, myInt: nil, myDouble:nil);
 
 
-let paul = Person()
-var addressNumber:Int?
 
-if let home = paul.residence
-{
-    if let postalAddress = home.address
-    {
-        if let building = postalAddress.buildingNumber
-        {
-            if let convertedNumber = Int(building)
-            {
-                addressNumber = convertedNumber
-            }
-        }
-    }
-}
-//the above codes are cubersome
-//optional chaining:
-//?意思是：如果paul.residence?不为nil，则返回paul.residence
-if let addressNumber = paul.residence?.address?.buildingNumber
-{
-    //...
-    print("\(addressNumber)")
-}
 
 
 

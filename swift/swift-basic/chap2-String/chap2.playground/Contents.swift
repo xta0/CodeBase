@@ -8,13 +8,13 @@ import Foundation
 ================*/
 
 /*
-string concatenation
+* [String concatenation]
 */
 var str = "Hello, playground" + ","
 str += "!"
 
 /*
- * string interpolation and fomating
+ * [string interpolation and fomating]
  */
 var myInt = 10
 str += "\(myInt)"

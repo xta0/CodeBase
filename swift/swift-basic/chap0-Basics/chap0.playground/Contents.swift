@@ -35,10 +35,10 @@ var myStringNonOptional:String
 
 
 /*
-====
-Optionals
-====
-*/
+ ====
+ Optionals
+ ====
+ */
 //equals to optionalStr1 = nil in objc
 var optionalStr1:String?
 
@@ -46,7 +46,7 @@ var optionalStr1:String?
 //you need to make sure the string is not nil when use
 var optionalStr2:String! = nil
 
-print(optionalStr1); //nil
+print(optionalStr1!); //nil
 print(optionalStr1 as Any); //nil
 print(optionalStr1 as AnyObject); //null
 print(optionalStr2); //nil
@@ -74,12 +74,12 @@ print(ret) //Optional(true) ??
 
 class someViewController:UIViewController{
     var btn:UIButton?
-
+    
 }
 var imageView = UIImageView();
 imageView.image = UIImage(named: "")
 if  let image = imageView.image{
-    let sz = image.size
+    
 }else{
     print("This image hasn't been set")
 }
@@ -98,7 +98,7 @@ let x = Int("22");
 print(x!*2);
 
 /*
-using if-let
+ using if-let
  */
 //using optional binding
 if let optionalStr1 = optionalStr1{

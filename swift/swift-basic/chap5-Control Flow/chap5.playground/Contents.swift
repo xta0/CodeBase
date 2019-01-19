@@ -6,6 +6,12 @@ import UIKit
  *Control Flow
  */
 
+
+/*
+ ====
+ for
+ ====
+ */
 let birdGames = ["Angry Birds","Tiny Wings","Flappy Bird"]
 let gameTypes = ["COD":"Shooting","COL":"RPG"]
 
@@ -60,7 +66,11 @@ for(k,_) in gameTypes
     print("key:\(k)")
 }
 
-//while loop
+/*
+ ======
+ while loop
+ ======
+ */
 
 var multiplesof3 = 3
 while multiplesof3 < 100
@@ -81,24 +91,74 @@ repeat{
 }while(random == lastRandom)
 
 
-//if
+/*
+ =====
+ if / if let
+ =====
+ */
 
 let name = "Ray"
-
-if name.count <= 3
-{
+if name.count <= 3{
     print("You Hava a short name")
 }
-else if name.count <= 6
-{
+else if name.count <= 6{
     print("You Hava a average name")
 }
-else
-{
+else{
     print("You Hava a long name")
 }
 
-//switch
+let person:[String:String] = ["name":"Tao", "location":"SF"];
+if let name:String = person["name"] {
+    print(name)
+}
+
+/*
+ ====
+ guard / guard let
+ ====
+ */
+//guard是一种特殊的if，仅当guard的条件为true时，才执行后面逻辑，否则进入else分支
+
+//1. 检查函数参数
+func updateApp1(b:Bool){
+    guard b else {
+        return
+    }
+    print("pass updateApp1")
+}
+updateApp(b: false)
+//2. 检查中间结果
+func updateApp2(b:Bool){
+    let x:[Int] = [1,2,3]
+    guard x.count > 3 else{
+        return
+    }
+    print("pass updateApp2")
+}
+//3. unwrap optional value
+func greet(_ person: [String:String]){
+    guard let name = person["name"] else{
+        return;
+    }
+    print(name);
+    guard let location = person["location"] else{
+        return ;
+    }
+    print (location)
+}
+
+
+
+greet(person)
+
+
+/*
+ =====
+ Switch
+ =====
+ */
+
 let teamMember = "BC"
 
 //no fallthrough
@@ -155,4 +215,15 @@ for birdGame in birdGames{
     }
 }
 
+/*
+ ======
+ API Compatibiliy
+ ======
+ */
+if #available(iOS 10, macOS 10.12, *){
+    //use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS
+    
+}else{
+    //fallback to earlier iOS and macOS APIs
+}
 

@@ -28,8 +28,8 @@ class MySwiftClass
 let obj = MySwiftClass()
 
 //get it's pointer in memory
-let obj_ptr:UnsafePointer<Void> = unsafeAddressOf(obj)
-let obj_ptr_shadow: UnsafePointer<Void> = unsafeBitCast(obj, UnsafePointer<Void>.self)
+let obj_ptr:UnsafeRawPointer = unsafeAddressOf(obj)
+let obj_ptr_shadow: UnsafeRawPointer<Void> = unsafeBitCast(obj, to: UnsafePointer<Void>.self)
 
 print(" \(obj_ptr),\(obj_ptr_shadow)")
 
