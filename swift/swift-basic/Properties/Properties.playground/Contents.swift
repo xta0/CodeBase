@@ -40,7 +40,9 @@ class T{
         get{
             return 1.0
         }
-        set ( newValue ) {}
+        set ( newValue ) {
+            
+        }
     }
 }
 

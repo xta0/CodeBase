@@ -3,7 +3,9 @@
 import UIKit
 
 /*
- * Enums (Value Type)
+====
+Value Types
+====
  */
 
 //default type is int
@@ -19,8 +21,13 @@ enum Suit{
 var cardSuit1 = Suit.Diamonds
 let cardSuit2:Suit = .Clubs
 
-switch cardSuit1
-{
+/*
+ ====
+ Enum value can only be checked by using switch statement
+ ====
+ switch必须穷举enum的所有分支
+ */
+switch cardSuit1{
 case .Clubs:
     print("Clubs")
 case .Diamonds:
@@ -39,6 +46,7 @@ enum Rank:Int
 }
 
 let rwVal = Rank.three.rawValue
+print("raw:\(rwVal)")
 
 let orank = Rank(rawValue: 3) //optional
 
@@ -47,89 +55,90 @@ if let rank = orank
     print(rank.rawValue)
 }
 
-//associated values
+/*
+ ====
+ associated values
+ ====
+ */
 enum Rank2
 {
     case Ace
     case Num(Int)
     case Jack,Queen,King
-    func description() ->String
-    {
-        switch(self)
-        {
-        case .Ace:
-            return "ACE"
-        case .Jack:
-            return "JACK"
-        case .Queen:
-            return "Queue"
-        case .King :
-            return "King"
-            
-        case .Num(let val):
-            return String(val)
-        }
-        
-    }
 }
 //
 let rank4 = Rank2.Num(3)
-rank4.description()
+print(rank4)
 
+/*
+ ====
+ Associated data is accessed through a switch statement using "let"
+ ====
+ */
+switch(rank4)
+{
+case .Ace:
+    print ("ACE")
+case .Jack:
+    print ("Jack")
+case .Queen:
+    print ("Queen")
+case .King :
+    print ("King")
+case .Num(let val):
+    print( String(val) )
+}
 
-//default values
+/*
+ ====
+ Specify default "self" value
+ ====
+*/
 enum Rating : Int
 {
     case Terrible = 1
     case Average
     case Epic
     
-    init()
-    {
+    init(){
         self = .Average
     }
+    
+    mutating func switchToEpic (){
+        self = .Epic
+    }
 }
 
-let myRating = Rating()
-myRating.rawValue
-
-
+var myRating = Rating()
+print(myRating)
+myRating.switchToEpic()
+print(myRating)
 
 /*
- Struct (Value Type)
+ ====
+ Methods & Properties
+ ====
+ Enum可以定义method和computed property，不能定义stored property
  */
-struct PictureFrame{
-    var width = 5
-    var height = 7
-    var thickness: Double = 1.5
-    var area: Int{
-        get{
-            return width*height
-        }
-    }
-}
-var p = PictureFrame()
-print(p.area)
-var p2 = p; //copy
-p2.width = 10
-print(p.area) //no change
+enum FastFoodMenuItem {
+    case hamburger(numberOfPatties: Int)
+    case fries(size: Int)
+    case drink(String, ounces: Int)
+    case cookie
 
-struct Beer{
-    var style = "Pale Ale"
-    var percentAlcohol = 5
-    static var cheerDict = ["English":"Cheers!","German":"Prost"]
-    var suggestedVolumePreserving:String {
-        get {
-            return "\(12/(percentAlcohol/5)) ounces"
+    func isIncludedInSpecialOrder(number: Int) -> Bool {
+        switch self {
+        case .hamburger(let pattyCount):
+            return pattyCount == number
+        case .fries, .cookie: //combine to one case
+            return true
+        case .drink(_, let ounces):
+            return ounces == 16
         }
     }
-    static func cheers(language: String){
-        if let cheers = cheerDict[language]{
-            print("\(cheers)")
-        }
+    //stored property
+    var calories: Int {
+        return 100
     }
 }
-var happyBeer = Beer(style: "Lager", percentAlcohol:6)
-print(happyBeer.suggestedVolumePreserving)
-Beer.cheers(language: "English")
 

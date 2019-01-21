@@ -16,7 +16,7 @@ let birdGames = ["Angry Birds","Tiny Wings","Flappy Bird"]
 let gameTypes = ["COD":"Shooting","COL":"RPG"]
 
 //for in
-for i in 1..<10
+for i in 0..<10
 {
     print("Exclusive: \(i)")
 }
@@ -27,8 +27,18 @@ for i in 1...10
     print("Exclusive: \(i)")
 }
 
+//固定步长的for
+for i in stride(from: 0.5, to: 12.25, by: 0.5) {
+    print(i)
+}
+
 for i in 0..<birdGames.count
 {
+    let birdGame = birdGames[i]
+    print(birdGame)
+}
+
+for i in birdGames.indices {
     let birdGame = birdGames[i]
     print(birdGame)
 }
@@ -127,7 +137,6 @@ func updateApp1(b:Bool){
     }
     print("pass updateApp1")
 }
-updateApp(b: false)
 //2. 检查中间结果
 func updateApp2(b:Bool){
     let x:[Int] = [1,2,3]

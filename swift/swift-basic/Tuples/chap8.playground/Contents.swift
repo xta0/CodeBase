@@ -1,13 +1,16 @@
 import UIKit
 
 /*
+ =====
  tuples
+ =====
  */
 
 
-//unnamed tuples
+/*
+ unnamed tuples
+ */
 let tipAndTotal = (4.00,25)
-let tipAndTotalExplicit:(Double,Double) = (3.00,200)
 
 //access
 print(tipAndTotal.0)
@@ -19,8 +22,13 @@ let(a,b) = tipAndTotal
 print(a)
 print(b)
 
-//named tuples
-let tipAndTotalExplicit2:(tipAmt:Double,total:Double) = (3.00,200)
+/*
+named tuples
+*/
+let tipAndTotal2:(tipAmt:Double,total:Double) = (3.00,200)
+
+print(tipAndTotal2.tipAmt)
+print(tipAndTotal2.total)
 
 //tuple as return values
 let total = 21.19
