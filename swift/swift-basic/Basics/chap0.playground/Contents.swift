@@ -5,6 +5,13 @@ var myInt:Int = 1
 var myDouble:Double = 1.4
 var myBool:Bool = true
 var myString:String = "Jayson"
+var myArray: [String] = ["1"]
+
+print(MemoryLayout.size(ofValue: myInt))
+print(MemoryLayout.size(ofValue: myDouble))
+print(MemoryLayout.size(ofValue: myBool))
+print(MemoryLayout.size(ofValue: myString))
+print(MemoryLayout.size(ofValue: myArray))
 
 //swift 1.2
 //var myView:UIView = UIView(frame: CGRectMake(0, 0, 320, 100))

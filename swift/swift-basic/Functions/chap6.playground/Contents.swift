@@ -13,7 +13,7 @@ func addNums(first x:Int, second y:Int) -> Int{
     return x+y;
 }
 
-//swift 1.2 可以忽略 first, second
+//swift 1.2 可以忽略argument label
 //addNums(10, 10)
 //swift 2.0必须加上
 print(addNums(first: 10, second: 10));
@@ -23,9 +23,8 @@ print(addNums(first: 10, second: 10));
 func addNums(_ x: Int,_ y: Int ) -> Int{
     return x+y
 }
-
-//swift 2.0必须加上x,y
-addNums(x: 10, y: 10)
+//有argument label，但是忽略
+addNums(10,10)
 
 //arugment name可以忽略
 //此时x，y表示arugment label
