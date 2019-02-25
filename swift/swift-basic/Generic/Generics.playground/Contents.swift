@@ -2,8 +2,10 @@
 
 import Foundation
 
+/// Generics
+
 //generic:函数名称后面声明<T>
-func SWAP<T>(inout x:T, inout y:T )
+func SWAP<T>(_ x:inout T, _ y: inout T )
 {
     let tmp = x
     x = y
@@ -19,7 +21,7 @@ var c:String
 //index of a target string in array
 func indexOfString(target:String,array:[String]) -> Int?
 {
-    for (index,value) in enumerate(array)
+    for (index,value) in array.enumerated()
     {
         if value == target
         {
@@ -30,13 +32,12 @@ func indexOfString(target:String,array:[String]) -> Int?
 }
 
 let strList:[String] = ["a","c","d"]
-
-let index = indexOfString("a", strList)!
+let index = indexOfString(target: "a", array: strList)!
 
 //index of any obj in array
 func indexOf<T: Equatable>(target:T,array:[T]) ->Int?
 {
-    for(index,value) in enumerate(array)
+    for(index,value) in array.enumerated()
     {
         if value == target
         {
@@ -46,8 +47,8 @@ func indexOf<T: Equatable>(target:T,array:[T]) ->Int?
     return nil
 }
 
-let indexStr = indexOf("c", strList)!
-let indexInt = indexOf(3, [1,2,3])!
+let indexStr = indexOf(target: "c", array: strList)!
+let indexInt = indexOf(target: 3, array: [1,2,3])!
 
 
 //a more complexed example
@@ -59,8 +60,8 @@ struct orderedDictionary<KeyType:Hashable,ValueType>
     var array = ArrayType()
     var dicationary = DictionaryType()
     var count:Int
-        {
-        return self.array.count
+    {
+        return array.count
     }
     
     //mutating:
@@ -73,19 +74,15 @@ struct orderedDictionary<KeyType:Hashable,ValueType>
         
         let existingValue = self.dicationary[key];
         
-        if existingValue != nil
-        {
-            let existingIndex = find(self.array, key)!
-            
-            if existingIndex < index
-            {
-                adjustedIndex--
+        if existingValue != nil {
+            let existingIndex = self.array.firstIndex(of: key)!
+            if existingIndex < index{
+                adjustedIndex -= 1
             }
-            self.array .removeAtIndex(existingIndex);
-            
+            array.remove(at: existingIndex)
         }
         
-        self.array.insert(key, atIndex: adjustedIndex)
+        self.array.insert(key, at: adjustedIndex)
         self.dicationary[key] = value
         
         return existingValue
@@ -95,10 +92,10 @@ struct orderedDictionary<KeyType:Hashable,ValueType>
     {
         precondition(index < self.array.count, "Index out of bounds")
         
-        let key = self.array.removeAtIndex(index)
+        let key = self.array.remove(at: index)
         
         //确定value不为空，则直接使用!符号
-        let value = self.dicationary.removeValueForKey(key)!
+        let value = dicationary.removeValue(forKey: key)!
         return (key,value)
     }
     
@@ -106,10 +103,10 @@ struct orderedDictionary<KeyType:Hashable,ValueType>
     //实现subscription接口 => dict[key]=value
     
     subscript(key: KeyType) -> ValueType?
-        {
+    {
         get{
             
-            println("ssss")
+            print("ssss")
             return self.dicationary[key]
         }
         
@@ -131,7 +128,7 @@ struct orderedDictionary<KeyType:Hashable,ValueType>
     
     //value = dict[0]
     subscript(index:Int) -> (KeyType,ValueType)?
-        {
+    {
         get
         {
             precondition(index < self.array.count, "Index out of bounds")

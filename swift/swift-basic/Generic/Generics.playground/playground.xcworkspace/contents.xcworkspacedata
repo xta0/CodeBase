@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/moxin/Projects/CodeBase/swift/swift-basic/Generic/Generics.playground">
    </FileRef>
 </Workspace>
