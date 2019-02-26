@@ -157,3 +157,112 @@ print(obj.textualDescription)
 
 
 /// [Protocol Inheritance]
+protocol PrettyTextRepresentable: TextRepresentable {
+    var prettyTextualDescription: String { get }
+}
+
+/// [Class-Only Protocols]
+
+// 如果Protocol被声明成从AnyObject继承，则该protocol只能被class实现
+protocol SomeClassOnlyProtocol: AnyObject, TextRepresentable {
+    // class-only protocol
+}
+
+/// [Protocol Composition]
+// 用于类型约束，要求某个类型同时具有多个protocol的类型， 用`&`符号
+
+protocol Named {
+    var name: String { get }
+}
+protocol Aged {
+    var age: Int { get }
+}
+struct Person1: Named, Aged {
+    var name: String
+    var age: Int
+}
+// 要求celebrator的类型为 `Named & Aged`
+func wishHappyBirthday(to celebrator: Named & Aged) {
+    print("Happy birthday, \(celebrator.name), you're \(celebrator.age)!")
+}
+let birthdayPerson = Person1(name: "Malcolm", age: 21)
+wishHappyBirthday(to: birthdayPerson)
+
+/// [Checking for Protocol Conformance]
+// 1. 使用`is`检查object是否conform了某个protocol
+
+protocol HasArea {
+    var area: Double { get }
+}
+class Circle: HasArea {
+    let pi = 3.1415927
+    var radius: Double
+    var area: Double { return pi * radius * radius }
+    init(radius: Double) { self.radius = radius }
+}
+class Country: HasArea {
+    var area: Double
+    init(area: Double) { self.area = area }
+}
+
+// Animal does not conform to `HasArea` protocol
+class Animal {
+    var legs: Int
+    init(legs: Int) { self.legs = legs }
+}
+
+let objects: [AnyObject] = [
+    Circle(radius: 2.0),
+    Country(area: 243_610),
+    Animal(legs: 4)
+]
+
+for object in objects {
+    if object is HasArea {
+        print("\(object) conforms to the protocl")
+    }
+    if let objectWithArea = object as? HasArea {
+        print("Area is \(objectWithArea.area)")
+    } else {
+        print("Something that doesn't have an area")
+    }
+}
+
+
+/// [Optional Protocol Requirements]
+// Optional Protocol用 `@objc`标识
+
+/// Note that @objc protocols can be adopted only by classes that inherit from Objective-C classes or other @objc classes. They can’t be adopted by structures or enumerations.
+@objc protocol CounterDataSource {
+    @objc optional func increment (forCount count: Int) -> Int
+    @objc optional var fixedIncrement: Int { get }
+}
+
+// 当调用optional Protocol函数时，函数类型会发生变化，例如(Int) -> String将变为((Int) -> String)?
+// 这是由于编译器无法知道对象是否实现了这个函数
+
+class Counter {
+    var count = 0
+    var dataSource: CounterDataSource?
+    func increment() {
+        // increment后面的?表示不确定dataSource是否实现了该方法
+        // 因此其返回值也是optional的类型
+        if let amount = dataSource?.increment?(forCount: count) {
+            count += amount
+        } else if let amount = dataSource?.fixedIncrement {
+            count += amount
+        }
+    }
+}
+
+// TreeSource实现了CounterDataSource，前提是它从NSObject这个OC类型中继承下来
+class ThreeSource: NSObject, CounterDataSource {
+    let fixedIncrement = 3
+}
+
+var counter = Counter()
+counter.dataSource = ThreeSource()
+for _ in 1...4 {
+    counter.increment()
+    print(counter.count)
+}
