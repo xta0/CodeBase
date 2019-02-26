@@ -34,6 +34,7 @@ class Starship: FullyNamed {
         return (prefix != nil ? prefix! + " " : "") + name
     }
 }
+
 var ncc1701:FullyNamed = Starship(name: "Enterprise", prefix: "USS")
 print(ncc1701.fullName)
 
