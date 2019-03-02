@@ -267,3 +267,27 @@ for _ in 1...4 {
     counter.increment()
     print(counter.count)
 }
+
+/// [Protocol Extensions]
+// 提供对protocol函数的默认实现
+
+extension PrettyTextRepresentable  {
+    var prettyTextualDescription: String {
+        return textualDescription
+    }
+}
+
+/// [Adding Constraints to Protocol Extensions]
+extension Collection where Element: Equatable {
+    func allEqual() -> Bool {
+        for element in self {
+            if element != self.first {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+let equalNumbers = [100, 100, 100, 100, 100]
+let differentNumbers = [100, 100, 200, 100, 200]

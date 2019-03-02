@@ -2,7 +2,10 @@
 
 import Foundation
 
+///////////////
 /// Generics
+///////////////
+
 
 //generic:函数名称后面声明<T>
 func SWAP<T>(_ x:inout T, _ y: inout T )
