@@ -19,6 +19,14 @@ var a = 42
 var b = 43
 SWAP(&a, &b)
 print(a,b)
+
+/// [Type Constraints]
+// 对泛型T进行类型约束
+class SomeClass {}
+func someFunction<T: SomeClass, U: Equatable> (someT: T, someU: U){
+    // T is subclass of SomeClass
+    // U must conforms Equatable
+}
 let strList:[String] = ["a","c","d"]
 // add constraint to type 'T'
 func indexOf<T: Equatable>(target:T,array:[T]) ->Int?{
@@ -148,8 +156,12 @@ print(dogIndex)
 orderedDict["Thursday"] = "pig"
 
 /// [Extending a Generic Type]
+// extend 类模板时，类型参数T仍然有效
 extension Stack {
     var top: T? {
         return items.isEmpty ? nil : items[items.count-1]
     }
 }
+
+
+
