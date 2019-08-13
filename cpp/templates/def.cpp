@@ -19,6 +19,16 @@ int comp(const T& v1, const T& v2) {
 }
 
 int main(){
-    int ret = comp<int>(10,10);   
+    int val = 0;
+    val = 1.5;
+    printf("%d",val);
+    int ret = comp<int>(10,10);
+    char c = 255;
+    if (c>10){
+        printf("greater");
+    } else{
+        printf("c=%i,less",c);
+    }
+    printf("1/2=%f",(float)(1/2));
     return 0;
 }
