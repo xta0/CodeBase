@@ -6,6 +6,12 @@ import UIKit
  =====
  */
 
+/*
+ 1. mutable tuple vs immutable tuple
+ 2. after a tuple is created, we can't add or delete elements in it
+ 3. we can mutate the value of mutated tuple, but can't change its type
+ 4. element's type can be type of any
+ */
 
 /*
  unnamed tuples
@@ -16,6 +22,12 @@ let tipAndTotal = (4.00,25)
 print(tipAndTotal.0)
 print(tipAndTotal.1)
 
+// create a const tuple
+let result =  (1, "no access")
+print(result)
+print(result.0)
+print(result.1)
+//result.0 = 100 //can't mutate a const tuples
 
 //binding
 let(a,b) = tipAndTotal
@@ -25,10 +37,22 @@ print(b)
 /*
 named tuples
 */
-let tipAndTotal2:(tipAmt:Double,total:Double) = (3.00,200)
+var tipAndTotal2:(tipAmt:Double,total:Double) = (3.00,200)
 
 print(tipAndTotal2.tipAmt)
 print(tipAndTotal2.total)
+
+//tipAndTotal2 is a mutable tuple
+tipAndTotal2.0 = 100
+print(tipAndTotal2.tipAmt)
+
+
+//any can be any type
+var input: (tensor:Any, size: Int) = ([[1,2],[3.4]], 4)
+print(input.0)
+input.tensor = "[1,2],[3,4]" //legal, because the type is any
+print(input.0)
+
 
 //tuple as return values
 let total = 21.19
@@ -52,6 +76,7 @@ func return3values() -> (a:String,b:String,c:String)
 
 let error = (404,"Not Found")
 
+//pattern matching
 switch error
 {
 case(200,_):

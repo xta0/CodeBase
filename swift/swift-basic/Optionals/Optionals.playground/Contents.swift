@@ -19,6 +19,8 @@ var hello: String?               //Optional<String> = .none
 var hello1: String? = "hello"    //Optional<String> = .some("hello")
 var hello2: String? = nil        //Optional<String> = .none
 
+//in this case, we can see the keyword `nil` in swift is also an enum type
+
 /*
  unwrapping
  let hello: String?
@@ -47,6 +49,14 @@ if let greeting = hello {
     case .none { //do something else }
  }
  */
+/*
+ ===
+ implicitly unwrapping
+ ===
+ mainly used in param initialization in class
+ */
+var str1: String! = "abc"
+var str2: String? = "abc"
 
 /*
  ====
@@ -67,7 +77,11 @@ let y = hello ?? "foo"
  Optional Chaining
  ====
  */
-
+var text: String? = "abc"
+let count = text?.count // count is also an optional type
+if count != nil {
+    
+}
 
 class Address{
     var buildingNumber :String?

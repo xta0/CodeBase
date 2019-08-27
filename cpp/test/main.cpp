@@ -5,12 +5,13 @@
 #include <set>
 #include <unordered_map>
 using namespace std;
-#include "tensor.h"
-#include "tensor_method.h"
+
+
 
 int main(){
-    Tensor tensor;
-    tensor.abs();
+    int b[] = {1,2,3};
+    vector<int> a(std::begin(b), std::end(b));
+    std::cout<<a[2]<<std::endl;
 
 
 
