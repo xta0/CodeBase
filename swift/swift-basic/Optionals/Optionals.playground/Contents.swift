@@ -15,11 +15,20 @@ import UIKit
  it has a lot of special syntax that other types don't have
  */
 
-var hello: String?               //Optional<String> = .none
-var hello1: String? = "hello"    //Optional<String> = .some("hello")
-var hello2: String? = nil        //Optional<String> = .none
-
+var foo: String?            //Optional<String> = .none
+//equivalent to
+var bar: String? = nil      //Optional<String> = .none
 //in this case, we can see the keyword `nil` in swift is also an enum type
+
+// here is an interesting example
+var str1: String //this line will compile, the compile will know that str1 doesn't have a valid value
+print(type(of: str1))       //String
+// var str2 = str1 //this will cause an error
+var str2: String! //this line will also compile, However,the compiler will assume that str2 have a valid value
+print(type(of: str2))       //Optional<String>
+print(str2)  //nil, this won't cause any error,
+//print(str2!) //this will cause an error, because we try to unwrap the value
+var str3 = str2 //this acutally works, str3 is also Optional<String>
 
 /*
  unwrapping
@@ -38,6 +47,7 @@ var hello2: String? = nil        //Optional<String> = .none
  if let
  ====
  */
+var hello: String?
 if let greeting = hello {
     print(greeting)
 } else {
@@ -55,8 +65,8 @@ if let greeting = hello {
  ===
  mainly used in param initialization in class
  */
-var str1: String! = "abc"
-var str2: String? = "abc"
+var text1: String! = "abc"
+var text2: String? = "abc"
 
 /*
  ====

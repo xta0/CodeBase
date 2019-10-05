@@ -4,7 +4,6 @@ import Foundation
  Any: can represent an instance of any type at all, including function types and optional types.
  AnyObject: can represent an instance of any class type.
  */
-
 var anyArray:[Any] = [1,2,"hello",true]
 print(anyArray) //[1, 2, "hello", true] all value type
 
