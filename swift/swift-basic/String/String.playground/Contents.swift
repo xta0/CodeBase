@@ -33,6 +33,11 @@ print(str1 == str2) //true
 //use lowercased in swift 4.0
 print(str1.lowercased() == str3)
 print(str2.isEmpty)
+//contains string
+let welcome = "hello, world"
+print(welcome.contains("hello"))
+print(welcome.hasPrefix("hello"))
+print(welcome.hasSuffix("world"))
 
 /*
  * String to other type
@@ -54,14 +59,49 @@ if( maybeInt != nil )
 }
 
 /*
- * Substring
+ * Indexing
  */
+let greeting = "Guten Tag!"
+// greeting[1] //error:'subscript(_:)' is unavailable: cannot subscript String with an Int, see the documentation comment for discussion
+// can't use Int as index, String has its own indexing type - String.Index
+greeting[greeting.startIndex]
+greeting[greeting.index(after:  greeting.startIndex)]
+greeting[greeting.index(before: greeting.endIndex)]
+//访问任意字符
+let index = greeting.index(greeting.startIndex, offsetBy: 2)
+greeting[index] //'t'
 
-//contains string
+
+
+/*
+ * APIs
+ */
 var flappy = "Flappy Jay"
-print(flappy.contains("Jay"))
-print(flappy.hasPrefix("Flappy"))
-print(flappy.hasSuffix("Jay"))
+//insert
+//1. insert a character
+flappy.insert("!", at: flappy.endIndex)
+//2. insert a string
+flappy.insert(contentsOf: " Bird", at: flappy.index(flappy.startIndex, offsetBy: 6))
+print(flappy) //Flappy Bird Jay
+
+//remove
+flappy.remove(at: flappy.index(before: flappy.endIndex))
+let range = flappy.index(flappy.startIndex, offsetBy: 6) ..< flappy.index(flappy.startIndex, offsetBy: 11)
+flappy.removeSubrange(range)
+print(flappy)
+//SubString
+//In Swift, substring has its own type of "Substring"
+//Substring 拥有 String的大部分方法
+//Substring 可以转成 String
+//Both String and Substring conform to StringProtocol
+let prefix_index = flappy.firstIndex(of: " ") ?? flappy.endIndex
+let prefix = flappy[..<prefix_index] //typeof Substring
+let newString = String(prefix)
+//why substring?
+let img = UIImage(named: "substring")
+
+//
+
 
 
 /*

@@ -20,6 +20,12 @@ var myView:UIView = UIView(frame: CGRect(x:0,y:0, width:320, height: 100))
 myView.backgroundColor = UIColor(red: 0x11, green: 0x22, blue: 0x33,alpha: 1.0)
 myView.backgroundColor = UIColor.red;
 
+
+/*
+ ==
+ let/var
+ ==
+ */
 var urInt = 1
 var urDouble = 1.4
 var urBool = true
@@ -53,7 +59,7 @@ var optionalStr1:String?
 //you need to make sure the string is not nil when use
 var optionalStr2:String! = nil
 
-print(optionalStr1!); //nil
+//print(optionalStr1!); //nil
 print(optionalStr1 as Any); //nil
 print(optionalStr1 as AnyObject); //null
 print(optionalStr2); //nil

@@ -21,7 +21,7 @@ var bar: String? = nil      //Optional<String> = .none
 //in this case, we can see the keyword `nil` in swift is also an enum type
 
 // here is an interesting example
-var str1: String //this line will compile, the compile will know that str1 doesn't have a valid value
+var str1: String //this line will compile, the compiler will know that str1 doesn't have a valid value
 print(type(of: str1))       //String
 // var str2 = str1 //this will cause an error
 var str2: String! //this line will also compile, However,the compiler will assume that str2 have a valid value
@@ -29,6 +29,14 @@ print(type(of: str2))       //Optional<String>
 print(str2)  //nil, this won't cause any error,
 //print(str2!) //this will cause an error, because we try to unwrap the value
 var str3 = str2 //this acutally works, str3 is also Optional<String>
+
+/*
+ ==
+ as
+ ==
+ */
+print(foo as Any) //nil
+print(foo as AnyObject) //<null>
 
 /*
  unwrapping
@@ -42,9 +50,12 @@ var str3 = str2 //this acutally works, str3 is also Optional<String>
  }
  */
 
+
+
+
 /*
  ====
- if let
+ if/guard let
  ====
  */
 var hello: String?
