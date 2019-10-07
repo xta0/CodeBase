@@ -48,160 +48,61 @@ var myStringNonOptional:String
 
 
 /*
- ====
- Optionals
- ====
+ 溢出运算符
  */
-//equals to optionalStr1 = nil in objc
-var optionalStr1:String?
-
-//implicity unwrapped optionals
-//you need to make sure the string is not nil when use
-var optionalStr2:String! = nil
-
-//print(optionalStr1!); //nil
-print(optionalStr1 as Any); //nil
-print(optionalStr1 as AnyObject); //null
-print(optionalStr2); //nil
-
-optionalStr1 = "optinal string 1"
-optionalStr2 = "optinal string 2"
-
-if(optionalStr1 != nil){
-    //println(optionalStr1) swift 1.0
-    print(optionalStr1!); //swift 2.0
-}
-
-//for safty concern
-var y:Int?
-y = Int("32");
-y = Int("ABC"); //nil
-
-//functions return optional types
-func f1(s1:String?, s2:String?) -> Any?
-{
-    return s1 == nil || s2 == nil
-}
-let ret:Any? = f1(s1:nil,s2:nil);
-print(ret) //Optional(true) ??
-
-class someViewController:UIViewController{
-    var btn:UIButton?
-    
-}
-var imageView = UIImageView();
-imageView.image = UIImage(named: "")
-if  let image = imageView.image{
-    
-}else{
-    print("This image hasn't been set")
-}
-
-/**
- using unwrap: !
- */
-print(optionalStr1!);
-//because optionalStr2 is declared as !
-//so we don't need to unwarp the value
-print(optionalStr2);
-//
-let w = Int("123")!;
-print(w*2);
-let x = Int("22");
-print(x!*2);
 
 /*
- using if-let
+ 无符号数 Uint8
+ &+ 上溢出, 从最大数变成最小数
+     11111111 （255）
+            1 （1）
+    100000000 （0）
+ 
+     11111111（255）
+           11（3）
+    100000010（2）
+ 
+ 无符号数 Uint8
+ &- 下溢出, 从最小数变成最大数
+    00000000 （0）
+           1 （1）
+    11111111 （255）
+ 
+    00000000 （0）
+          11 （3）
+    11111101 （253）
+ 
  */
-//using optional binding
-if let optionalStr1 = optionalStr1{
-    print(optionalStr1)
-}
-//Optional Chaining as an Alternative to Forced Unwrapping
-let imageSize = imageView.image?.size
-//dynamicType is deprecated in Swift 2.3
-//imageSize.dynamicType
-//use type(of:) in Swift 3.0
-print(type(of: imageSize)) //Optional<CGSize>
-if let imageSize = imageView.image?.size {
-    print("\(imageSize)")
-}
+let num1: UInt8 = 255
+//let num2 = num1 + 10 //wrong
+let num2 = num1 &+ 1 //0
+let num3 = num1 &+ 3 //2
+
+let num4: UInt8 = 0
+let num5 = num4 &- 1 //255
+let num6 = num4 &- 3 //253
+
 
 /*
- as! & as？
+ 有符号数 Int8 (-128 ~ 127)
+ &+ 上溢出, 从最大数变成最小数
+ 01111111 （127）
+        1 （1）
+ 10000000  (-128)
+ 
+ 有符号数 Int8 (-128 ~ 127)
+ &- 下溢出, 从最小数变成最大数
+ 10000000 （-128）
+        1 （1）
+ 01111111 （127）
  */
-class Berverage{
-    var Category:String
-    init(category:String){
-        self.Category = category
-    }
-}
-class HotDrink:Berverage{
-    var paring:String
-    init(category: String, paring: String){
-        self.paring = paring;
-        super.init(category: category)
-    }
-}
 
-let hotDrink = HotDrink(category: "coffee", paring: "unknow")
-
-print((hotDrink as Berverage).Category)
-if let hotDrink = hotDrink as? Berverage {
-    print(hotDrink.Category)
-}
+let num7:Int8 = 127
+let num8 = num7 &+ 1 //-128
+let num9:Int8 = -128
+let num10 = num9 &- 1 //127
 
 /*
- ====
- Optional Chaining
- ====
+ 区间运算
  */
-class Address
-{
-    var buildingNumber :String?
-    var streetName: String?
-    var apartmentName: String?
-}
-class Residence
-{
-    var address :Address?
-}
-class Person
-{
-    var residence :Residence?
-}
-
-
-let paul = Person()
-var addressNumber:Int?
-
-if let home = paul.residence
-{
-    if let postalAddress = home.address
-    {
-        if let building = postalAddress.buildingNumber
-        {
-            if let convertedNumber = Int(building)
-            {
-                addressNumber = convertedNumber
-            }
-        }
-    }
-}
-//the above codes are cubersome
-//optional chaining:
-//?意思是：如果paul.residence?不为nil，则返回paul.residence
-if let addressNumber = paul.residence?.address?.buildingNumber
-{
-    //...
-    print("\(addressNumber)")
-}
-
-
-
-//tenery operators
-var hungury = true
-hungury ? print("Let's eat!") : print("Let's wait.")
-
-
 

@@ -6,6 +6,25 @@ import UIKit
  *Control Flow
  */
 
+/*
+ ===
+ Range
+ ===
+ */
+let range1 = 1...5 //[1,5]
+let range2 = 1..<5 //[1,5)
+let range3 = ...5 //[-inifinity,5]
+range3.contains(0) //true
+range3.contains(7) //false
+range3.contains(-1) //true
+let range4 = (1...10).reversed()
+
+let welcome = "hello world"
+let interval = "a"..."z"
+for c in welcome {
+    if !interval.contains(String(c)) {
+    }
+}
 
 /*
  ====
@@ -53,6 +72,22 @@ for i in birdGames.indices {
 
 //itorate arrays
 for birdGame in birdGames
+{
+    print(birdGame)
+}
+
+
+for birdGame in birdGames[2...] //[2, birdGames.count)
+{
+    print(birdGame)
+}
+
+for birdGame in birdGames[...2] //[0,2]
+{
+    print(birdGame)
+}
+
+for birdGame in birdGames[..<2] //[0,2)
 {
     print(birdGame)
 }

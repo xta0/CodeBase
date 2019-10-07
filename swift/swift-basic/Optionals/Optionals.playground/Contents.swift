@@ -29,14 +29,15 @@ print(type(of: str2))       //Optional<String>
 print(str2)  //nil, this won't cause any error,
 //print(str2!) //this will cause an error, because we try to unwrap the value
 var str3 = str2 //this acutally works, str3 is also Optional<String>
-
-/*
- ==
- as
- ==
- */
+//for safty concern
+var x:Int?
+x = Int("32");
+x = Int("ABC"); //nil
+//type case to any
 print(foo as Any) //nil
 print(foo as AnyObject) //<null>
+
+
 
 /*
  unwrapping
@@ -49,9 +50,6 @@ print(foo as AnyObject) //<null>
         print(data)
  }
  */
-
-
-
 
 /*
  ====
