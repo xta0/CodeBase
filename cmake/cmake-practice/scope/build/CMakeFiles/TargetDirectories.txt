@@ -1,0 +1,4 @@
+/Users/taox/Projects/CMake-Playground/cmake-practice/scope/build/CMakeFiles/rebuild_cache.dir
+/Users/taox/Projects/CMake-Playground/cmake-practice/scope/build/CMakeFiles/edit_cache.dir
+/Users/taox/Projects/CMake-Playground/cmake-practice/scope/build/child2/CMakeFiles/rebuild_cache.dir
+/Users/taox/Projects/CMake-Playground/cmake-practice/scope/build/child2/CMakeFiles/edit_cache.dir

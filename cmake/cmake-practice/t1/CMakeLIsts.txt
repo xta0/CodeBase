@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(hello_cmake)
+
+set(src "main.c")
+
+
+set (PLATFORM "SIMULATOR")
+if (${PLATFORM} STREQUAL "OS")
+    message(STATUS "!!!OS")
+elseif (${PLATFORM} STREQUAL "SIMULATOR")
+    message(STATUS "!!!SIMULATOR")
+else() 
+  message (FATAL_ERROR "Unsupported IOS_PLATFORM: ${IOS_PLATFORM} for NNPACK")
+endif()
+
+message(STATUS "This is BINARY dir ${hello_binary_dir}")
+add_executable(hello ${src})
+

@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.5)
+project(scope)
+
+set(root "ROOT")
+include (child1/child1.cmake)
+message("root: ${root}")
+message("CHILD1 ${CHILD1}")
+add_subdirectory(child2)
+message("root: ${root}")
+message("CHILD2 ${CHILD2}")

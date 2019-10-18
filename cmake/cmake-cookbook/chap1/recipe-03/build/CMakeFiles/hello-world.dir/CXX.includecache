@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-03/Message.h
+iosfwd
+-
+string
+-
+
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-03/Torch.h
+iostream
+-
+string
+-
+
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-03/hello-world.cpp
+Message.h
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-03/Message.h
+Torch.h
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-03/Torch.h
+cstdlib
+-
+iostream
+-
+

@@ -1,0 +1,3 @@
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-04/build/CMakeFiles/rebuild_cache.dir
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-04/build/CMakeFiles/edit_cache.dir
+/Users/taox/Projects/CMake-Playground/cmake-cookbook/chap1/recipe-04/build/CMakeFiles/hello-world.dir
