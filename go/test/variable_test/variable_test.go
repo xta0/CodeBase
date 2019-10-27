@@ -1,4 +1,4 @@
-package fib
+package variable
 
 import (
 	"fmt"
@@ -7,14 +7,17 @@ import (
 
 /*
 Go 中的变量赋值方式
-var a
-
+var a Int = 32
+a:= 32 //类型推断
 */
 func TestSwap(t *testing.T) {
-
+	a := 10
+	b := 11
+	a, b = b, a
+	fmt.Print(a, b)
 }
 
-func TestFibList(t *testing.T) {
+func TestFib(t *testing.T) {
 	a := 1
 	b := 1
 	fmt.Print(" ", a)
