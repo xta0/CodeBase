@@ -48,3 +48,17 @@ func sum(ops ...int) int {
 	}
 	return s
 }
+
+func TestMultiInput(t *testing.T) {
+	s := sum(1, 1, 2, 3)
+	fmt.Println(s)
+}
+
+//defer
+func TestDefer(t *testing.T) {
+	defer func() {
+		fmt.Println("Clear Resources")
+	}()
+	t.Log("Started")
+	//defer runs
+}
