@@ -38,3 +38,24 @@ func TestString(t *testing.T) {
 	fmt.Printf("*%s*", s)
 	fmt.Print(len(s))
 }
+
+/*
+自定义类型
+*/
+//typedef
+type DISCOUNT_FUNC func(price float32) float32
+type Book struct {
+	name     string
+	price    float32
+	discount DISCOUNT_FUNC
+}
+
+func TestCustomType(t *testing.T) {
+	book := new(Book)
+	book.name = "Go Programming"
+	book.price = 29.3
+	book.discount = func(price float32) float32 {
+		return price * 0.8
+	}
+	fmt.Printf("price: %f", book.discount(book.price))
+}
