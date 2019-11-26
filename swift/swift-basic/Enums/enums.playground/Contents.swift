@@ -22,6 +22,23 @@ var cardSuit1 = Suit.Diamonds
 let cardSuit2:Suit = .Clubs
 
 /*
+====
+Iteration
+====
+*/
+enum CompassPoint: CaseIterable {
+    case north
+    case south
+    case east
+    case west
+}
+let numberOfDirections = CompassPoint.allCases.count
+for direction in CompassPoint.allCases {
+    print(direction)
+}
+
+
+/*
  ====
  Enum value can only be checked by using switch statement
  ====
