@@ -50,6 +50,7 @@
         "string_view": "cpp",
         "thread": "cpp",
         "complex": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "__mutex_base": "cpp"
     }
 }
