@@ -42,7 +42,7 @@ private:
 int main(){
 
     smart_ptr<int> ptr1{new int(111)};
-    int x = *ptr1;d'k'gu'g'ilginngbchbkrjgcifnfrrcvnte
+    int x = *ptr1;
     cout<<x<<endl;
     smart_ptr<int> ptr2 = ptr1;
     x = *ptr2;
