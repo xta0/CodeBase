@@ -17,9 +17,9 @@ public:
         ptr_ = other.release();
     }
     //move constructor
-    // smart_ptr(smart_ptr&& other) {
-
-    // }
+    smart_ptr(smart_ptr&& other) {
+        ptr_ = other.release();
+    }
     ~smart_ptr() { delete ptr_; }
     T* get() const { return ptr_; };
     T* release() {
@@ -36,21 +36,13 @@ public:
     }
 private:
     T* ptr_;
-
 };
 
 int main(){
-
     smart_ptr<int> ptr1{new int(111)};
-    int x = *ptr1;d'k'gu'g'ilginngbchbkrjgcifnfrrcvnte
-    cout<<x<<endl;
     smart_ptr<int> ptr2 = ptr1;
-    x = *ptr2;
-    cout<<x<<endl;
     smart_ptr<int> ptr3{ptr2};
-    x = *ptr3;
-    cout<<x<<endl;
-    x = *ptr2;
-    cout<<x<<endl;
+    smart_ptr<int> ptr4(std::move(ptr3));
+    
     return 0;
 }

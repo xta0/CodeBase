@@ -18,6 +18,8 @@ int comp(const T& v1, const T& v2) {
     return 0;
 }
 
+//class type
+
 int main(){
     int val = 0;
     val = 1.5;
@@ -30,5 +32,7 @@ int main(){
         printf("c=%i,less",c);
     }
     printf("1/2=%f",(float)(1/2));
+
+    string::size_type x = 10;
     return 0;
 }

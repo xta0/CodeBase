@@ -51,6 +51,11 @@
         "thread": "cpp",
         "complex": "cpp",
         "typeinfo": "cpp",
-        "__mutex_base": "cpp"
+        "__mutex_base": "cpp",
+        "cstdarg": "cpp",
+        "map": "cpp",
+        "memory_resource": "cpp",
+        "set": "cpp",
+        "string": "cpp"
     }
 }
