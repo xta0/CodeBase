@@ -1,6 +1,8 @@
-#include <stdio.h>
+#include <iostream>
+#include <string>
 //main.cpp
-extern int myintvar;
+extern int func1(int x);
+
 int main(){
-    printf("%d",myintvar); 
+    std::cout<<func1(10)<<std::endl;
 }

@@ -5,6 +5,6 @@ int func0 () {
   return ++myintvar;
 }
  
-int func1 (int i) {
+int __attribute__ ((visibility ("default"))) func1 (int i) {
   return func0() * i;
 }

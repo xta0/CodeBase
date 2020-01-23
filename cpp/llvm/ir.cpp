@@ -28,6 +28,8 @@
 #include <unordered_map>
 using namespace std;
 
+
+// clang++ ir.cpp -I /usr/local/Cellar/llvm/9.0.0_1/include -L /usr/local/Cellar/llvm/9.0.0_1/lib -lLLVMCore -lLLVM
 int main(){
 
 
