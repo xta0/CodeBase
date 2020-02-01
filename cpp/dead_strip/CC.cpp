@@ -3,6 +3,6 @@
 
 CC::CC(){}
 
-namespace{
-    auto REG_DD = DD();
+namespace REG{
+    static auto REG_DD = DD();
 }

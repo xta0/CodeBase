@@ -32,8 +32,6 @@ void func1(){
 AA REG_A = AA();
 CC REG_C = CC();
 
-typedef void(*fp)(int,int)
-
 int main(){
     cout<<"main starts"<<endl;
     BB b = BB();
