@@ -1,0 +1,1 @@
+clang++ -shared -fPIC a.cpp -fvisibility=hidden -o a.so

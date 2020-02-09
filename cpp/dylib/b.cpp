@@ -1,0 +1,1 @@
+int myintvar = 10;

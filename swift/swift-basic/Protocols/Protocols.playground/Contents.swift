@@ -6,6 +6,7 @@ import UIKit
 
 ///[Property Requirements]
 // Protocol中不支持定义property，但是可以约束实现该Protocol对象的同名property的读写类型
+// only {get} and {get set} are allowed
 
 protocol SomeProtocol {
     var mustBeSettable: Int { get set }
@@ -37,6 +38,15 @@ class Starship: FullyNamed {
 
 var ncc1701:FullyNamed = Starship(name: "Enterprise", prefix: "USS")
 print(ncc1701.fullName)
+
+
+///Type property also works with Protocol
+protocol AnotherProtocol {
+    static var someTypeProperty: Int{get set}
+}
+struct AnotherObject: AnotherProtocol {
+    static var someTypeProperty: Int = 100
+}
 
 /// [Method Requirements]
 /// `mutating` keyword
@@ -71,6 +81,8 @@ class SomeSuperClass {
 
 class SomeClass: SomeSuperClass, SomeProtocol2 {
     //如果是init在protocol中声明了，则init要加上require
+    //"required" from SomeProtocol2
+    //"override" from SomeSuperClass
     required override init(param: Int) {
         super.init(param: param)
     }
@@ -101,6 +113,9 @@ class Roomate:Souschef,Equatable {
 }
 
 /// [Protocols as Types]
+/// 1. 用作函数，方法的形参或返回值类型
+/// 2. 作为常量，变量或者属性的类型
+/// 3. 作为数组，字典或者其它的存储器的元素类型
 
 protocol RandomGenerator {
     func random() -> UInt
@@ -233,7 +248,8 @@ for object in objects {
 /// [Optional Protocol Requirements]
 // Optional Protocol用 `@objc`标识
 
-/// Note that @objc protocols can be adopted only by classes that inherit from Objective-C classes or other @objc classes. They can’t be adopted by structures or enumerations.
+/// Note that @objc protocols can be adopted only by classes that inherit from Objective-C classes or other @objc classes.
+/// They can’t be adopted by structures or enumerations.
 @objc protocol CounterDataSource {
     @objc optional func increment (forCount count: Int) -> Int
     @objc optional var fixedIncrement: Int { get }

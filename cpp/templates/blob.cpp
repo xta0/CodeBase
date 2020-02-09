@@ -1,13 +1,16 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
+
 using namespace std;
 
 template <typename T>
 class Blob
 {
+public:
+    //类型成员
     typedef typename std::vector<T>::size_type size_type;
-
 public:
     Blob() : data(std::make_shared<vector<T>>()) {}
     Blob(std::initializer_list<T> il) : data(std::make_shared<vector<T>>(il)) {}
@@ -57,6 +60,8 @@ int main()
     {
         cout << articles[i] << endl; //实例化 Blob<int>::operator[](size_t)
     }
+    Blob<int>::size_type size = squares.size();
+
 
     return 0;
 }
