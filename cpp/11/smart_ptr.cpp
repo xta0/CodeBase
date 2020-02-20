@@ -20,12 +20,18 @@ public:
     smart_ptr(smart_ptr&& other) {
         ptr_ = other.release();
     }
-    ~smart_ptr() { delete ptr_; }
+    ~smart_ptr() {
+        cout<<"dealloc"<<endl;
+        delete ptr_; 
+    }
     T* get() const { return ptr_; };
     T* release() {
         T* ptr = ptr_;
         ptr_ = nullptr;
         return ptr;
+    }
+    void swap(smart_ptr& rhs){
+        std::swap(ptr_, rhs.ptr_);
     }
     T& operator*() const { return *ptr_; }
     T* operator->() const { return ptr_; }
@@ -40,9 +46,9 @@ private:
 
 int main(){
     smart_ptr<int> ptr1{new int(111)};
-    smart_ptr<int> ptr2 = ptr1;
-    smart_ptr<int> ptr3{ptr2};
-    smart_ptr<int> ptr4(std::move(ptr3));
+    auto ptr2(ptr1);
+    
+    
     
     return 0;
 }
