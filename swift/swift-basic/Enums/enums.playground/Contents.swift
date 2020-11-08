@@ -159,3 +159,10 @@ enum FastFoodMenuItem {
     }
 }
 
+enum Dummy {
+    static func dummy(){
+        print("dummy")
+    }
+}
+Dummy.dummy()
+
