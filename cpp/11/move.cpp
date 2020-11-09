@@ -70,14 +70,6 @@ HasPtr get()
     return HasPtr("func"); //call default constructor twice, one for construct HasPtr, one for return the object
 }
 
-void f(int&& x) {
-    std::cout<<x<<std::endl;
-}
-
-void g(int&& x){
-    f(std::move(x));
-}
-
 int main()
 {
 

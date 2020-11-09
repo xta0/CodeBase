@@ -40,11 +40,7 @@ public:
     }
 };
 
-void func(string&& msg){
-    cout<<msg<<endl;
-    cout<<&msg<<endl;
-}
-Dummy func2 (){
+Dummy getDummy (){
     return Dummy(99);
 }
 int main(){
