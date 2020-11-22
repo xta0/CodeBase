@@ -44,14 +44,8 @@ Dummy getDummy (){
     return Dummy(99);
 }
 int main(){
-
-    cout<<Dummy::retRef().func().x<<endl;
-    cout<<Dummy::retVal().func().x<<endl;
-    
-    
-    // Dummy &&d = func2();
-    // cout<<d.x<<endl;
-
+    Dummy&& x = getDummy();
+    std::cout<<"main"<<std::endl;
 
     return 0;
 }
