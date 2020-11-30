@@ -5,12 +5,15 @@ using namespace std;
 
 class Dummy{
 public: 
-    int x = 100;
-    Dummy(int i):x(i){
+    string x = "Dummy";
+    Dummy(string i):x(i){
         cout<<"Constructor"<<endl;
     }
     Dummy(const Dummy& d):x(d.x){
         cout<<"Copy Contructor"<<endl;
+    }
+    Dummy(Dummy&& d):x(std::move(d.x)){
+        cout<<"Move Contructor"<<endl;
     }
     Dummy& operator=(const Dummy& d) &{
         cout<<"Assign Operator"<<endl;
@@ -29,23 +32,46 @@ public:
         return *this;
     }
     Dummy func() const &{
-        return Dummy(99);
+        return Dummy("1");
     }
     static Dummy& retRef(){
-        static Dummy d(19);
+        static Dummy d("1");
         return d;
     }
     static Dummy retVal(){
-        return Dummy(10);
+        return Dummy("1");
     }
 };
 
-Dummy getDummy (){
-    return Dummy(99);
+Dummy&& getDummy(){
+    return std::move(Dummy("99"));
+    // return Dummy("99");
 }
+Dummy&& getDummy (Dummy&& dm){
+    return std::move(dm);
+}
+
+Dummy dummy() {
+    std::cout<<__func__<<std::endl;
+    Dummy x("12");
+    return x;
+}
+
+void foo(Dummy&& dm){
+    Dummy&& d = std::move(dm);
+    d.x = "100";
+    // std::cout<<d.x<<std::endl;
+    // Dummy d2 = getDummy();
+    // std::cout<<d2.x<<std::endl;
+}
+
 int main(){
-    Dummy&& x = getDummy();
-    std::cout<<"main"<<std::endl;
+    std::cout<<"main start"<<std::endl;
+    Dummy dm = dummy();
+    dm = Dummy("123");
+    // foo(std::move(dm));
+    // std::cout<<dm.x<<std::endl;
+    std::cout<<"main end"<<std::endl;
 
     return 0;
 }

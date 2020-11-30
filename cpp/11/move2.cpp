@@ -12,9 +12,12 @@ void g(int&& x){
 
 class Dummy {
 public:
-    int x;
+    int x = 10;
     ~Dummy(){
-        std::cout<<"Dummy dealloc"<<std::endl;
+        std::cout<<__func__<<std::endl;
+    }
+    Dummy(Dummy&& dm){
+        x = dm.x;
     }
 };
 
@@ -22,13 +25,23 @@ void foo(Dummy&& dm){
     dm.x = 100;
 }
 
+Dummy bar(){
+    return Dummy();
+}
+
+Dummy& dummy(Dummy&& dm){
+    return dm;
+}
+
 int main(){
-    Dummy dm;
-    dm.x = 10;
-    foo(std::move(dm));
+    Dummy dm = Dummy();
+    Dummy&& dm2 = std::move(dm);
+    dm2.x = 100;
     std::cout<<dm.x<<std::endl;
-
-
+    // std::move(bar());
+    std::cout<<"main"<<std::endl;
+    
+    
 
     return 0;
 }
