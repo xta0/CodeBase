@@ -8,7 +8,7 @@ public:
     virtual ~Base() {
         std::cout<<"Base Dtor"<<std::endl;
     }
-    void print(){
+    virtual void print(){
         std::cout<<"Base Print"<<std::endl;
     }
 };
@@ -18,10 +18,10 @@ public:
     Derived() {
         std::cout<<"Derived Ctor"<<std::endl;
     }
-    ~Derived() {
+    virtual ~Derived() {
         std::cout<<"Derived Dtor"<<std::endl;
     }
-    void print(){
+    virtual void print() override{
         std::cout<<"Derived Print"<<std::endl;
     }
 };
@@ -34,8 +34,6 @@ int main(){
     Base* d = new Derived();
     print(d);
     delete d;
-
-
 
     return 0;
 }
