@@ -56,6 +56,7 @@
         "map": "cpp",
         "memory_resource": "cpp",
         "set": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "__split_buffer": "cpp"
     }
 }
