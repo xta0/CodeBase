@@ -1,0 +1,4 @@
+{
+    global: func1;
+    local: *;
+};

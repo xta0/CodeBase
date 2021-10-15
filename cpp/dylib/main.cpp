@@ -1,8 +1,9 @@
 #include <iostream>
-#include <string>
+
 //main.cpp
-extern int func1(int x);
+extern void func1();
 
 int main(){
-    std::cout<<func1(10)<<std::endl;
+    func1();
+    return 0;
 }
