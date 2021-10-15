@@ -13,3 +13,8 @@ inline void func3() {
 void func4(){
     cout<<"func4"<<endl;
 }
+
+class FOO {
+    public:
+~FOO();
+};

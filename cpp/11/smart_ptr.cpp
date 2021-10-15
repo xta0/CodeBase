@@ -47,6 +47,8 @@ private:
 int main(){
     smart_ptr<int> ptr1{new int(111)};
     auto ptr2(ptr1);
+    auto ptr1.get();
+
     
     
     

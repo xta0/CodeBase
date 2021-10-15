@@ -1,12 +1,12 @@
-class Person{
+class Person {
     constructor(firstname, lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
-    log(){
+    log() {
         console.log(this)
         const self = this;
-        function rename(name){
+        function rename(name) {
             console.log(self)
             self.firstname = name;
             console.log(self)
@@ -15,5 +15,5 @@ class Person{
     }
 }
 
-const p = new Person("Jason","Xu")
+const p = new Person("Jason", "Xu")
 p.log()
