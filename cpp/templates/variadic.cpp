@@ -27,6 +27,8 @@ std::string stringify_impl(const T& t){
 
 template<typename ... Param>
 std::vector<std::string> stringify(const Param& ... param){
+    std::cout<<sizeof...(Param)<<std::endl;
+    std::cout<<sizeof...(param)<<std::endl;
     return { stringify_impl(param)... };
 }
 

@@ -12,7 +12,7 @@ public:
     Dummy(const Dummy& d):x(d.x){
         cout<<"Copy Contructor"<<endl;
     }
-    Dummy(Dummy&& d):x(std::move(d.x)){
+    Dummy(Dummy&& d) noexcept :x(std::move(d.x)) {
         cout<<"Move Contructor"<<endl;
     }
     Dummy& operator=(const Dummy& d) &{
@@ -20,7 +20,7 @@ public:
         x = d.x;
         return *this;
     }
-    Dummy& operator=(const Dummy&& d){
+    Dummy& operator=(const Dummy&& d) noexcept {
         cout<<"Assign rvalue Operator"<<endl;
         x = d.x;
         return *this;
@@ -67,8 +67,10 @@ void foo(Dummy&& dm){
 
 int main(){
     std::cout<<"main start"<<std::endl;
-    Dummy dm = dummy();
-    dm = Dummy("123");
+    // Dummy dm = dummy();
+    auto dm = Dummy("123");
+    auto dm2 = Dummy(dm);
+    auto dm3 = Dummy(std::move(dm));
     // foo(std::move(dm));
     // std::cout<<dm.x<<std::endl;
     std::cout<<"main end"<<std::endl;
