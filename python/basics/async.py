@@ -16,6 +16,7 @@
 
 
 import asyncio
+from re import X
 
 async def worker_1():
     print('worker_1 start')
@@ -36,4 +37,6 @@ async def main():
     await task2
     print('awaited worker_2')
 
+x = main()
+print(x)
 asyncio.run(main())
