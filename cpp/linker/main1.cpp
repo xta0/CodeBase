@@ -1,15 +1,10 @@
 #include <iostream>
 
-extern int gValue;
-extern int func(int x);
+extern void set_value(int x);
+extern int get_value();
 int main(void) {
-    int val = -1;
-    // if(gValue > 1) {
-    val = func(10);
-    // }
-    // std::cout<<val<<std::endl;
-    while(1){
-
-    }
+    set_value(100);
+    int val = get_value();
+    std::cout<<val<<std::endl;
     return 0;
 }
