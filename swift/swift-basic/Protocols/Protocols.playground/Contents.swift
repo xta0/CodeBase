@@ -19,6 +19,7 @@ protocol FullyNamed {
 }
 
 struct Person: FullyNamed {
+    // fullName is read and write that satisfies the requirements
     var fullName: String
 }
 let jonh = Person(fullName: "John Reed")

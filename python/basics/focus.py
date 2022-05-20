@@ -3,7 +3,6 @@ import json
 import time
 import subprocess
 from typing import TypeVar
-import aiofiles
 from dataclasses import dataclass, field
 from typing import Any, Awaitable, Callable, Dict, Generic, List, Optional
 
@@ -22,9 +21,7 @@ class FocusStep(Generic[T]):
 def focus_step( ) -> Callable[[Callable[[T], Awaitable[None]]], FocusStep[T]]:
     # first define a decorator
     def focus_step_decorator(func: Callable[[T], Awaitable[None]]) -> FocusStep[T]:
-         step = FocusStep(
-            step = func,
-        )
+         step = FocusStep(step = func)
          return step
     return focus_step_decorator
 
@@ -47,8 +44,15 @@ def async_group(*original_steps: FocusStep[T]) -> FocusStep[T]:
 
 
 @focus_step()
+async def get_config(run_state: RunState) -> None:
+    print("get_config is running")
+    # await asyncio.sleep(1)
+    print("get_config is done")
+    
+@focus_step()
 async def test1(run_state: RunState) -> None:
     print("test1 is running")
+    await get_config.step(run_state)
     await asyncio.sleep(1)
     print("test1 is done")
     
