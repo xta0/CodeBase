@@ -2,7 +2,7 @@ import logging
 
 logger = logging.getLogger()
 id(logger)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 def setup_logger():
     logger.propagate = False # don't propagate messages to the main logger
