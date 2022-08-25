@@ -2,8 +2,8 @@
 
 # async def crawl_page(url):
 #     print('crawling {}'.format(url))
-#     sleep_time = int(url.split('_')[-1]) 
-#     await asyncio.sleep(sleep_time) 
+#     sleep_time = int(url.split('_')[-1])
+#     await asyncio.sleep(sleep_time)
 #     print('Done {}'.format(url))
 
 # async def main(urls):
@@ -39,4 +39,28 @@ async def main():
 
 x = main()
 print(x)
-asyncio.run(main())
+# asyncio.run(main())
+
+import time
+import functools
+import logging
+
+def timecoro(corofn):
+    @functools.wraps(corofn)
+    async def wrapper(*args, **kwargs):
+        start = time.time()
+        try:
+            result = await corofn(*args, **kwargs)
+        except Exception:
+            finish = time.time() - start
+            print('%s failed in %.2f', corofn, finish)
+            raise
+        else:
+            finish = time.time() - start
+            print('%s succeeded in %.2f', corofn, finish)
+            return result
+
+    return wrapper
+
+f1 = timecoro(worker_1)
+asyncio.run(f1())
