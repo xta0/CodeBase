@@ -17,24 +17,21 @@ def timed(fn):
         return result
     return inner
 
+class Person:
+    def __init__(self, f):
+        self.step = f
 
-def dec1(fn):
-    def inner():
-        print("dec1 is called")
-        return fn()
-    return inner
-
-
-def dec2(fn):
-    def inner():
-        print("dec2 is called")
-        return fn()
-    return inner
+def decf():
+    def dec(fn):
+        p = Person(fn)
+        return p
+    return dec
 
 
-@dec1
-@dec2
+@decf()
 def my_func():
-    print("my func is called")
+    return "John"
     
-my_func()
+p = my_func.step()
+print(p)
+#decf()(my_func)(10)
