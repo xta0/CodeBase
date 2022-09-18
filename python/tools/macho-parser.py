@@ -1,6 +1,7 @@
 import os
 import sys
 import struct
+import json
 from time import perf_counter
 
 
@@ -207,6 +208,7 @@ def scrub(path):
 def main():
     app_dir  = sys.argv[1]
     exe_name = sys.argv[2]
+    json_file_path = sys.argv[3]
     exe_path = app_dir + "/" + exe_name
     framework_path = app_dir + "/Frameworks"
     binaries = [exe_path]
