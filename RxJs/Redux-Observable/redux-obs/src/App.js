@@ -2,18 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import {connect} from "react-redux"
 import { Component } from 'react';
+import Beers from './components/Beers';
 
 class App extends Component {
   render() {
     console.log(this.props.name);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
+        <Beers />
       </div>
     );
   }
