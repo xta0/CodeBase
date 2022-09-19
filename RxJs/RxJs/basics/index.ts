@@ -1,4 +1,4 @@
-import { debounceTime, filter, map, Observable, Subscriber, tap, catchError, EMPTY, concatMap, Subject, BehaviorSubject } from 'rxjs';
+import { debounceTime, filter, map, Observable, Subscriber, tap, catchError, EMPTY, concatMap, Subject, BehaviorSubject, merge } from 'rxjs';
 
 // an observable can emit the following notifications
 // 1. next  0..many
@@ -237,3 +237,11 @@ const logoutBtn$ = new Observable<boolean>( s => {
 });
 logoutBtn$.subscribe(state$)
 
+
+//merge and concat
+merge(
+    of([1,2,3]),
+    of([2,3,4]),
+).subscribe( v => {
+    console.log("merge triggered: ", v);
+})
