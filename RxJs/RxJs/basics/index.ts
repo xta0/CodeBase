@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { debounceTime, filter, map, Observable, Subscriber, tap, catchError, EMPTY, concatMap, Subject, BehaviorSubject, merge } from 'rxjs';
 
 // an observable can emit the following notifications
@@ -245,3 +246,22 @@ merge(
 ).subscribe( v => {
     console.log("merge triggered: ", v);
 })
+
+
+console.log("---xxxxxxxxxx-----")
+const fox$ = new Observable<string>(s => {
+    console.log("fox is called")
+    s.next('fox')
+    setTimeout(()=>s.next('fox_1000'), 1000)
+});
+async function fun1() {
+    console.log("func1 is called!")
+    return await fox$.toPromise()
+
+}
+(async () => {
+    console.log("async is called!")
+    const result = await fun1()
+    console.log("result: ", result)
+    console.log(result)
+})();
