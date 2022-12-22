@@ -1,36 +1,49 @@
-import fs from 'fs';
-import path from 'path';
-import {
-    Stats,
-} from 'node:fs';
+namespace NAME{
 
-// import Stats
-
-// const d1 = fs.statSync('tests/x.json').mtime.getTime();
-// console.log(typeof d1)
-// const d2 = fs.statSync('app.js').mtime.getTime();
-// console.log(d2)
-// console.log(d2>d1)
-
-async function process() {
-    const stats: Promise<Stats>[] = [];
-    for (const dSYMPath of ['x.js', 'app.ts']) {
-        stats.push(fs.promises.stat(dSYMPath));
+    interface Person {
+        name: string
+        sayHello()
     }
-    return (await Promise.all(stats)).map( (stat: Stats) => stat.mtime.getTime())
-}
-const account = async () => {
-    try{
-        const mtimes = await process()
-        console.log(mtimes)
-    } catch(error){
-        if(error instanceof Error){
-            console.log(error.message)
+
+    interface Consturctor {
+        new (name: string): Person
+    }
+
+    interface Skill extends Person{
+        skill(): string
+    }
+
+    class Player implements Skill {
+        constructor(readonly name: string) {}
+        sayHello() {
+            console.log("Hello!")
         }
-        
+        skill(): string {
+            return "Basketball"
+        }
     }
-    
-    
-};
-account()
+    class Gamer extends Player {
+        override skill(): string {
+            return "CS GO"
+        }
+    }
 
+    function test(x: Skill) {
+        console.log(x)
+    }
+
+    const p = new Gamer('AJ')
+    test(p)
+
+    function platformFactory(cons: Consturctor, name: string){
+        return new cons(name)
+    }
+    const p2 = platformFactory(Player, 'kk')
+
+    const MAP1 = {
+        'player': Player,
+        'gamer': Gamer,
+    }
+
+
+}
