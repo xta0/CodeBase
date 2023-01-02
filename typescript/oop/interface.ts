@@ -71,3 +71,15 @@ const errorBag: ErrorContainer = {
     email: 'abc',
     1: "123" // 1 can be parsed as string
 }
+
+
+interface PlistInfo {
+    [key: string] : string | {[key: string]: string}
+}
+
+const plist: PlistInfo = {
+    "a": "1",
+    "b": {
+        "a": "2"
+    },
+}

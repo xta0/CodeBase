@@ -119,3 +119,10 @@ const numberBox: Box<number> = {
     name : "String A",
     content: 10
 }
+
+const x = {
+    "1": [1, 2]
+}
+const aa = 'b' + 'c'
+const y = x[aa]
+  

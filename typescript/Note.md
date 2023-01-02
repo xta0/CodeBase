@@ -1,12 +1,10 @@
+
 ## Setup
 - create index.html
 - create app.js
 - create app.ts
-    - tsc app.ts
-- npm install --save-dev lite-server
-    - "start": "lite-server"
-- watch mode
-    - `tsc app.ts -w`
+- compile and run
+    - `tss-node app.ts`
 
 ## Primitive Typs
 
@@ -17,23 +15,9 @@
 - enum:  `enum { A, B , C}`
 - array: `string[]`
 - union: `number | string`
-- literal: 'as-number'
-- object:
-
-```
-const person: {
-    name: String
-} = {
-    name: "XYZ"
-}
-
-```
-
-
+- literal: `type Result = 'result'`
+- object
 - type alias
-    - `type new_type = number | string`
-    - `type User = {name: String; age: number}`
-        - `const u1: User = {name: 'Max', age: 30}`
 - function types
     - `function f(n:number): number{ return n; }`
     - `let f: Function`
@@ -43,3 +27,16 @@ const person: {
     - `unknown` is different from `any`. Before using the unknow var, we have to check type first
 - never type
     - For functions that throws errors
+
+## Tell Whether a symbol is in the type space or value space
+
+A symbol in typescript exits in one of two spaces
+
+1. Type space
+2. Value space
+
+
+## Best practice
+
+1. Cannot check typescript types at runtime
+    - `instanceof` doesn't work for typescript types
