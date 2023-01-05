@@ -1,15 +1,14 @@
 import Foundation
 
-class Logger {    
+public class Logger: NSObject {    
     var prefix: String = ""
-    init(prefix:String) {
+    @objc public init(prefix:String) {
         self.prefix = prefix
     }
-    func log<T>(object: T)  {
+    public func log<T>(object: T)  {
         print(self.prefix + " \(object)")
     }
+    @objc public func logString(object: String)  {
+        self.log(object:object)
+    }
 }
-
-let logger = Logger(prefix: "xtao");
-logger.log(object: "yo!")
-
