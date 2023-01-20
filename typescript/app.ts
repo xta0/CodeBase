@@ -81,10 +81,12 @@ namespace NAME{
         }
     }
 
+    type X = PlatformConsturctor & ApplePlatform
 
-    function ApplePlatfromFactory<T extends PlatformConsturctor>(platformName: T , state:BuckState): Platform {
-        const platformImpl = new platformName(state) as ApplePlatform
-        return new IOSPlatform<typeof platformImpl>(platformImpl)
+
+    function ApplePlatfromFactory<T extends X>(platformName: T , state:BuckState): Platform {
+        const platformImpl = new platformName(state)
+        return new IOSPlatform(platformImpl as ApplePlatform)
     }
     const buckState = {
         version: "buck1"

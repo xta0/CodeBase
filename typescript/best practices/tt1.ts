@@ -1,5 +1,3 @@
-import { preProcessFile } from "typescript";
-
 type User = {
     name: string,
     age: number
