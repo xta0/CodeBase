@@ -1,0 +1,23 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "1. `tsc app.js` compiles the ts files to js files 2. `nvm install node` installs the latest node 3. `npm init` 4. `npm install --save-dev lite-server`",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/uuid": "^9.0.0",
+    "lite-server": "^2.6.1",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "typescript": "^4.8.2"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}

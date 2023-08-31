@@ -1,0 +1,4 @@
+module PhotoStore {
+    header "./PhotoStore-Bridging-Header.h"
+    export *
+}
