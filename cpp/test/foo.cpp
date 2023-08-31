@@ -6,6 +6,6 @@ void func2() {
     func1<int>(100);
 }
 
-FOO::~FOO{
+FOO::~FOO(){
     std::cout<<"dealloc"<<std::endl;
 }

@@ -121,11 +121,7 @@ class Roomate:Souschef,Equatable {
 protocol RandomGenerator {
     func random() -> UInt
 }
-extension RandomGenerator {
-    func random () -> UInt {
-        return UInt.random(in: 1...100)
-    }
-}
+
 class Dice {
     let sides: UInt
     let generator: RandomGenerator
@@ -138,6 +134,31 @@ class Dice {
     }
 }
 
+// option1:
+struct DiceGenerator1 : RandomGenerator {
+    func random () -> UInt {
+        return UInt.random(in: 1...100)
+    }
+}
+let generator1 = DiceGenerator1()
+let dice1 = Dice(sides: 6, generator: generator1);
+print("dice1: \(dice1.roll())")
+
+//option2
+//define an extension that contains a default implementation of the protocol
+//for classes/structs that conform to this protocol, they don't have to implement the protocol due to the default implementation
+extension RandomGenerator {
+    func random () -> UInt {
+        return UInt.random(in: 1...100)
+    }
+}
+struct DiceGenerator2: RandomGenerator {}
+let generator2 = DiceGenerator2()
+let dice2 = Dice(sides: 6, generator: generator2)
+print("dice2: \(dice2.roll())")
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /// [Adding Protocol Conformance with an Extension]
 protocol TextRepresentable {
     var textualDescription: String { get }
@@ -145,7 +166,8 @@ protocol TextRepresentable {
 
 extension Dice: TextRepresentable {
     var textualDescription: String {
-        return "A \(sides)-sided dice"
+        let number = self.roll();
+        return "A \(sides)-sided dice: \(number)"
     }
 }
 
@@ -156,6 +178,15 @@ extension Array: TextRepresentable where Element: TextRepresentable {
         return "[" + itemsAsText.joined(separator: ", ") + "]"
     }
 }
+
+var dices = Array<Dice>()
+for _ in 0...10 {
+    let dice = Dice(sides: 6, generator: generator2);
+    dices.append(dice)
+}
+print("dices: \(dices.textualDescription)")
+
+    
 
 /// [Declaring Protocol Adoption with an Extension]
 /// 如果某个类型已经实现了某个protocol中的函数，但是并没有显示的声明出来，这时候可以加一个空的实现

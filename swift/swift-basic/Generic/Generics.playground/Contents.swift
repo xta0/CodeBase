@@ -60,6 +60,28 @@ stackOfStrings.push("tres")
 stackOfStrings.push("cuatro")
 
 
+// associate type
+protocol Container {
+    associatedtype T: Equatable
+    mutating func append(_ item: T)
+    var count: Int {get}
+    subscript(i: Int) -> T {get}
+}
+
+struct IntStack: Container {
+    var items = [int]()
+    typealias T = Int // 特化类型
+    mutating func append(_ item: Int){
+        self.items.append(item)
+    }
+    var count: Int {
+        return items.count
+    }
+    subscript(i: Int) -> Int {
+        return items[i]
+    }
+}
+
 
 // Generic Ordered map
 struct OrderedDictionary<KeyType:Hashable,ValueType>{
