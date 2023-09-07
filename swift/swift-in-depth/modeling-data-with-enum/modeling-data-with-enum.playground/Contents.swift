@@ -48,6 +48,7 @@ enum Message3 {
 }
 
 let textMessage = Message3.join(userId: "1", date: Date())
+print(textMessage)
 
 /**
  When we want to work with the messages, we can use a switch case on them and unwrap its inner values
