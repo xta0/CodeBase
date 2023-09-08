@@ -27,7 +27,6 @@ const pPipeline = promisify(pipeline);
  * are related through a dependency graph, allowing some to run in parallel while
  * requiring strict sequencing between others.
  *
- * @deprecated Use PtyWithInterruptibleChildren or runMultiChildTask instead.
  * They have similar sequencing capabilities, with a simpler API and ability to run
  * in an interactive terminal.
  */

@@ -29,10 +29,11 @@ export type ChronicleErrorCode = | DegradedDocumentErrorCode
 
 export type ChronicleEventName =
     | ChronicleActivityName
-    // Please keep this list alphabetized
-    | '3rdPartyExtensionsSandboxed'
-    | 'ActivityDropped'
-    | 'ActivityFinished'
-    | 'buck build'
+    | 'graph1'
+    | 'task1'
+    | 'task2a'
+    | 'task2b'
+    | 'task3'
+    | 'task4'
 
 export type ChronicleExtras = Record<string, any>;
