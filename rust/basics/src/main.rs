@@ -1,11 +1,14 @@
 #[allow(dead_code)]
 #[allow(unused_variables)]
+#[allow(unused_assignments)]
 mod ds;
 mod funcs;
+mod memory;
 mod sh;
 mod stl;
 mod str;
 mod traits;
+
 use std::mem;
 
 const M: u64 = 128; // similar to c++ macro
@@ -16,7 +19,7 @@ fn fundamental_data_types() {
     let a: u8 = 123; // a is immutable
     let mut b: i8 = 0; // mutable keyword
     b = 42;
-    println!("b = {}", b);
+    println!("a = {} b = {}", a, b);
     let c = 12345678;
     println!("c taks up {} bytes", mem::size_of_val(&c));
 
@@ -139,5 +142,5 @@ fn main() {
     funcs::funcs();
     funcs::closures();
     traits::traits();
-    traits::builtin_traits();
+    memory::memory();
 }

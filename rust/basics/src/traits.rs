@@ -61,6 +61,7 @@ where
 }
 
 pub fn traits() {
+    println!("---------Trait-----------");
     let h1 = Human { name: "John" };
     h1.talk();
     let h2 = Human::create("James");
@@ -76,6 +77,9 @@ pub fn traits() {
     print_info(&h1);
     print_info2(h1, h2);
     print_info3(h3);
+
+    let goblin = Creature::new("Jeff");
+    println!("game proceeds");
 }
 
 // impl Human {
@@ -92,3 +96,22 @@ pub fn traits() {
 //     let h1 = Human::new("Kevin");
 //     print_info(&h1);
 // }
+
+// drop is a trait for class's deallocator
+struct Creature {
+    name: String,
+}
+
+impl Creature {
+    fn new(name: &str) -> Creature {
+        println!("{} enters the game.", name);
+        Creature { name: name.into() }
+    }
+}
+
+impl Drop for Creature {
+    // -dealloc
+    fn drop(&mut self) {
+        println!("{} is dead", self.name);
+    }
+}

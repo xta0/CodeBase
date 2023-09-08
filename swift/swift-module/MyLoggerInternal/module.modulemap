@@ -1,0 +1,4 @@
+module MyLoggerInternal {
+    header "MyLoggerInternal.h"
+    export *
+}

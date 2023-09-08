@@ -10,7 +10,5 @@ int get_value() {
 }
 
 int demo() {
-  // exVar = 100;
-  func1();
-  return 0;
+  return func1();
 }

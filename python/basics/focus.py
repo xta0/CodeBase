@@ -17,7 +17,7 @@ def timecoro(corofn, name, durations):
     "For focus steps in async groups, we use this wrapper to calculate the step duration"
     @functools.wraps(corofn)
     async def wrapper(*args, **kwargs):
-        start = time.time()        
+        start = time.time()
         result = await corofn(*args, **kwargs)
         finish = time.time() - start
         durations[name] = finish
@@ -30,7 +30,7 @@ class RunState:
     state: str = None
     durations: Dict[str, float] = field(default_factory = dict)
 
-    
+
 @dataclass
 class FocusStep(Generic[T]):
     step: Callable[[T], Awaitable[None]]
@@ -48,7 +48,7 @@ def focus_step( ) -> Callable[[Callable[[T], Awaitable[None]]], FocusStep[T]]:
 def async_group(*original_steps: FocusStep[T]) -> FocusStep[T]:
     @focus_step()
     async def _async_group(run_state: T) -> None:
-        
+
         coros = []
         for original_step in original_steps:
             s = original_step.step
@@ -75,14 +75,14 @@ async def get_config(run_state: RunState) -> None:
         pass
     # await asyncio.sleep(0)
     print("get_config is done")
-    
+
 @focus_step()
 async def test1(run_state: RunState) -> None:
     print("test1 is running")
     await get_config.step(run_state)
-    await asyncio.sleep(1)
+    await asyncio.sleep(3)
     print("test1 is done")
-    
+
 @focus_step()
 async def test2(run_state: RunState) -> None:
     print("test2 is running")
@@ -101,12 +101,12 @@ async def async_test1(run_state: RunState):
     # stdout, stderr = await proc.communicate()
     print("async test1 is done")
     # return stdout, stderr
-    
+
 @focus_step()
 async def async_test2(run_state: RunState):
     print("async test2 is running")
     time.sleep(2)
-    
+
     # await asyncio.sleep(0)
     # proc = await asyncio.create_subprocess_shell(
     #     cmd = "ls -al",
@@ -128,7 +128,7 @@ async def perform_steps(
 #     for step in steps
     # ]
     # await asyncio.gather(*coros)
-    
+
     duration = run_state.durations
     for step in steps:
         t1 =  time.time()
@@ -176,10 +176,6 @@ def main():
         steps(), #steps() returns a coroutine
         RunState()
     )
-    
+
 if __name__ == "__main__":
-    print("get_config: ", asyncio.iscoroutinefunction(get_config.step))
-    print("async_test1: ", asyncio.iscoroutinefunction(async_test1.step))
     main()
-    
-    
