@@ -1,0 +1,50 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./node_modules",
+      "downlevelIteration": true,
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "forceConsistentCasingInFileNames": true,
+      "inlineSourceMap": true,
+      "inlineSources": true,
+      "jsx": "react",
+      "keyofStringsOnly": true,
+      "lib": ["dom", "esnext"],
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "noEmit": true,
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "outDir": "build/atom/nuclide",
+      "paths": {
+        "atom": ["../typings/atom"],
+        "webpack": ["./@types/webpack"],
+        "*": ["../modules/*"]
+      },
+      "useUnknownInCatchVariables": false,
+      "preserveConstEnums": true,
+      "rootDir": "./",
+      "skipLibCheck": true,
+      "sourceRoot": ".",
+      "strict": true,
+      "target": "es2017",
+      "typeRoots": ["./node_modules/@types/", "./typings/"],
+      "resolveJsonModule": true
+    },
+    "exclude": [
+      "./build/**",
+      "./non-ts/**",
+      "./modules/**/*.js",
+      "./modules/nuclide-node-transpiler/**",
+      "./**/node_modules/**",
+      "./vscode-extensions/**/*.js",
+      "./vscode-extensions/fb-android/external/**",
+      "./vscode-extensions/fb-android/runtime/**",
+      "./vscode-extensions/fb-lldb/external/**",
+      "./vscode-extensions/rescript-vscode/**",
+      "./**/VendorLib/**",
+      "./third-party/**"
+    ]
+  }
+  

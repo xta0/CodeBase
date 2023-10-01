@@ -1,0 +1,10 @@
+[2023-01-30T20:17:18.445] [INFO] logger1 - task: graph1 started
+[2023-01-30T20:17:18.448] [INFO] logger1 - task: task1 started
+[2023-01-30T20:17:18.448] [INFO] logger2 - task: task1 eneded
+[2023-01-30T20:17:18.449] [INFO] logger1 - task: task2a started
+[2023-01-30T20:17:18.449] [INFO] logger1 - task: task2b started
+[2023-01-30T20:17:18.449] [INFO] logger2 - task: task2a eneded
+[2023-01-30T20:17:18.449] [INFO] logger2 - task: task2b eneded
+[2023-01-30T20:17:18.449] [INFO] logger1 - task: task3 started
+[2023-01-30T20:17:18.449] [INFO] logger2 - task: task3 eneded
+[2023-01-30T20:17:18.450] [INFO] logger2 - task: graph1 eneded
