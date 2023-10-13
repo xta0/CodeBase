@@ -54,6 +54,17 @@ struct Resource<A> {
     let parse: (Data) -> A?
 }
 
+enum CombineResource<A> {
+    case single(Resource<A>)
+}
+
+extension  CombineResource {
+    func flatMap<B>(_ transform: (A) -> CombineResource<B>) -> CombineResource<B> {
+        //give the result of the fisrt request of type A, it will generate the resource B
+    }
+}
+
+
 extension Resource {
     func map<B>(_ transform: @escaping (A) -> B) -> Resource<B> {
         return Resource<B>(urlRequest: urlRequest) { data in
@@ -124,3 +135,4 @@ let resource = Resource<Posts>(get: URL(string: "http://hn.algolia.com/api/v1/se
 URLSession.shared.load(resource: resource) { posts in
     print(posts)
 }
+

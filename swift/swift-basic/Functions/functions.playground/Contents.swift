@@ -12,7 +12,6 @@ import UIKit
 func addNums(first x:Int, second y:Int) -> Int{
     return x+y;
 }
-
 //swift 1.2 可以忽略argument label
 //addNums(10, 10)
 //swift 2.0必须加上

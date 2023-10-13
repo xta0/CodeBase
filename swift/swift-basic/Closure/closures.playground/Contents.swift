@@ -10,6 +10,22 @@ greetingFunc()
 let greetingBlock:()->()  = {print("greeting block is called!")}
 greetingBlock()
 
+/*
+ Closure is reference type
+ */
+func createIncrementer() -> () -> Void {
+    var counter = 0
+    return {
+        counter += 1
+        print(counter)
+    }
+}
+
+let incrementer = createIncrementer()
+incrementer()
+let incrementerCopy = incrementer
+incrementerCopy() // this captures the same counter value, so counter will be 2
+
 
 /*
  Closure Expression Syntax:

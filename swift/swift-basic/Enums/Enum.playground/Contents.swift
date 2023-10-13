@@ -181,13 +181,3 @@ enum FastFoodMenuItem {
         return 100
     }
 }
-
-
-enum Dummy {
-    static func dummy(){
-        print("dummy")
-    }
-}
-Dummy.dummy()
-
-
