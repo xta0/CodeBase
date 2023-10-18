@@ -10,14 +10,6 @@ import UIKit
  manipulate the reference count for the box, not for all the individual properties.
  */
 
-struct Person {
-    var name: String //ref count
-    var age: Int
-    var favoriteIceCream: String // ref count
-}
-
-let taylor = Person(name: "Taylor", age: 8, favoriteIceCream: "Chocoloate")
-
 // Box the value type into a ref type, so the value type can be shared across
 final class Box<T> {
     var value: T
@@ -25,11 +17,48 @@ final class Box<T> {
         self.value = value
     }
 }
+extension Box: CustomStringConvertible where T: CustomStringConvertible {
+    var description: String {
+        value.description
+    }
+}
 
-let box1 = Box(value: taylor)
-let box2 = box1
-box2.value = Person(name: "James", age: 9, favoriteIceCream: "s")
-print(box1.value)
+extension Box: Equatable where T: Equatable {
+    static func == (lhs: Box, rhs: Box) -> Bool {
+        return lhs.value == rhs.value
+    }
+}
+
+extension Box: Comparable where T: Comparable {
+    static func <(lhs: Box, rhs: Box) -> Bool {
+        lhs.value < rhs.value
+    }
+}
+
+extension Box: Hashable where T: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(value)
+    }
+}
+
+extension Box: Identifiable where T: Identifiable {
+    var id: T.ID { value.id }
+}
+
+
+struct Store {
+    let name: String
+    let address: String
+    var isOpen: Bool
+}
+
+struct HomeScreen {
+    var store: Box<Store>
+}
+
+struct PurchaseScreen {
+    var store: Box<Store>
+}
 
 
 
