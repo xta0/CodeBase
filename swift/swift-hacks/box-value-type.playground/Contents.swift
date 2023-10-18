@@ -11,12 +11,12 @@ import UIKit
  */
 
 struct Person {
-    var name: String
+    var name: String //ref count
     var age: Int
-    var favoriteIceCream: String
+    var favoriteIceCream: String // ref count
 }
 
-let taylor = Person(name: "James", age: 8, favoriteIceCream: "Chocoloate")
+let taylor = Person(name: "Taylor", age: 8, favoriteIceCream: "Chocoloate")
 
 // Box the value type into a ref type, so the value type can be shared across
 final class Box<T> {
@@ -26,7 +26,11 @@ final class Box<T> {
     }
 }
 
-let box = Box(value: taylor)
+let box1 = Box(value: taylor)
+let box2 = box1
+box2.value = Person(name: "James", age: 9, favoriteIceCream: "s")
+print(box1.value)
+
 
 
 
