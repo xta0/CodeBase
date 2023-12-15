@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 typealias JSONDictionary = [String: Any]
 
@@ -88,70 +89,52 @@ extension Result {
     }
 }
 
-final class Future<A> {
+final class Signal<A> {
     var callbacks: [(Result<A>) -> Void] = []
-    var cached: Result<A>?
     
-    // take in a completion handler
-    init(compute: (@escaping (Result<A>)->Void) -> Void) {
-        compute(self.send)
+    static func pipe() -> ((Result<A>)->Void, Signal<A>) {
+        let signal = Signal<A>()
+        return ( { [weak signal] value in signal?.send(value) }, signal)
     }
     
-    func onResult(callback: @escaping (Result<A>) -> Void) {
-        if let value = cached {
-            callback(value)
-            return
-        }
+    func subscribe(callback: @escaping (Result<A>) -> Void) {
         callbacks.append(callback)
     }
     
-    func flatMap<B>(transform: @escaping (A) -> Future<B>) -> Future<B> {
-        return Future<B> { completion in
-            self.onResult { result in
-                switch result {
-                    case .success(let value):
-                    transform(value).onResult(callback: completion)
-                    case .error(let error):
-                    completion(.error(error))
-                }
-            }
-        }
-    }
-    
     private func send(_ value: Result<A>) {
-        assert(cached == nil)
-        cached = value
         for callback in callbacks {
             callback(value)
         }
-        callbacks = []
     }
 }
 
-enum WebserviceError: Error {
-    case notAuthenticated
-    case other
-}
 
-final class WebService {
-    let session = URLSession(configuration: .ephemeral)
-    func load<A>(resource: Resource<A>) -> Future<A> {
-        return Future { completion in
-            print("future invoked!")
-            session.dataTask(with: resource.url) { data, response, _ in
-                guard let data else {
-                    completion(.error(WebserviceError.other))
-                    return
-                }
-                completion(Result(resource.parse(data), or: WebserviceError.other))
-            }.resume()
-        }
+final class KeyValueObserver<A>: NSObject {
+    let block: (A) -> ()
+    let keyPath: String
+    var object: NSObject
+    init(object: NSObject, keyPath: String, _ block: @escaping (A) -> ()) {
+        self.block = block
+        self.keyPath = keyPath
+        self.object = object
+        super.init()
+        object.addObserver(self, forKeyPath: keyPath, options: .new, context: nil)
+    }
+    
+    deinit {
+        object.removeObserver(self, forKeyPath: keyPath)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        block(change![.newKey] as! A)
     }
 }
 
-let resource = Resource<Posts>(get: URL(string: "http://hn.algolia.com/api/v1/search?tags=front_page")!)
-let service = WebService()
-service.load(resource: resource).onResult(callback:  { posts in
-    print(posts)
-})
+let (sink, signal) = Signal<String>.pipe()
+signal.subscribe { result in
+    print(result)
+}
+sink(.success("Hello Signal"))
+
+
 
