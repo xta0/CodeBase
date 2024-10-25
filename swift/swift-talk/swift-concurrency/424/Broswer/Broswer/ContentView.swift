@@ -27,6 +27,27 @@ class Store: Observable {
     }
 }
 
+struct Box<A> {
+    var value: A
+    init(_ value: A) {
+        self.value = value
+    }
+}
+
+struct WebViewProxy {
+    func takeSnapshot() async throws -> NSImage {
+        fatalError()
+    }
+}
+
+struct WebViewReader<Content: View>: View {
+    @State var proxy = WebViewProxy()
+    @ViewBuilder var content: (WebViewProxy) -> Content
+    var body: some View {
+        content(proxy)
+    }
+}
+
 struct WebView: NSViewRepresentable {
     var url: URL
     var snapshot: (_ takeSnapshot: @escaping () async -> NSImage) -> ()
@@ -78,16 +99,16 @@ struct ContentView: View {
             }
         } detail: {
             if let s = selectedPage, let page = store.pages.first(where: {$0.id == s}) {
-                WebView(url: page.url) { takeSnapshot in
-                    self.takeSnapshort = takeSnapshot
-                }
-                .overlay {
-                    if let i = image {
-                        Image(nsImage: i)
-                            .scaleEffect(0.5)
-                            .border(Color.red)
+                WebViewReader { proxy in
+                    WebView(url: page.url) { takeSnapshot in
+                        self.takeSnapshort = takeSnapshot
+                    }.toolbar {
+                        Button("Snapshot") {
+                            image = proxy.takeSnapshort()
+                        }
                     }
                 }
+              
             } else {
                 ContentUnavailableView("No Page Selected!", systemImage: "globe")
             }
