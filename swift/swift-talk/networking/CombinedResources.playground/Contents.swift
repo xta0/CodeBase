@@ -136,3 +136,5 @@ URLSession.shared.load(resource: resource) { posts in
     print(posts)
 }
 
+let queue = DispatchQueue(label: "com.example.imagetransform")
+dispatchPrecondition(condition: .onQueue(queue))
